@@ -16,29 +16,47 @@
 </head>
 <body>
 
-    <div id="tmplTask" data-win-control="WinJS.Binding.Template">
-        <div class="taskItem">
+    <div id="tmplMovie" data-win-control="WinJS.Binding.Template">
+        <div class="movieItem">
             Id: <span data-win-bind="innerText:id"></span>
             <br /><br />
-            Name: <span data-win-bind="innerText:name"></span>
+            Title: <span data-win-bind="innerText:title"></span>
+            <br /><br />
+            Category: <span data-win-bind="innerText:category"></span>
         </div>
     </div>
 
+    <div>
+        <label>Category</label>
+        <select id="selectCategory">
+            <option>All</option>
+            <option>SciFi</option>
+            <option>Musical</option>
+        </select>
+    </div>
 
-    <div id="lvTasks" 
+    <div id="lvMovies" 
         data-win-control="WinJS.UI.ListView"
         data-win-options="{
-            itemTemplate: select('#tmplTask'),
+            itemTemplate: select('#tmplMovie'),
             selectionMode: 'single'
         }"></div>
 
 
     <form id="frmAdd">
         <fieldset>
-            <legend>Add Task</legend>
-            <label>New Task</label>
-            <input id="inputTaskName" required />
-            <button>Add</button>
+            <legend>Add Movie</legend>
+            <div>
+                <label>Title</label>
+                <input id="inputMovieTitle" required />
+
+                <label>Category</label>
+                <select id="selectMovieCategory">
+                    <option>SciFi</option>
+                    <option>Musical</option>
+                </select>
+                <button>Add</button>
+            </div>
         </fieldset>
     </form>
 

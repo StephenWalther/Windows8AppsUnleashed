@@ -42,9 +42,9 @@ function init() {
         document.getElementById("btnEdit").addEventListener("click", function () {
             if (lvTasks.selection.count() == 1) {
                 lvTasks.selection.getItems().done(function (items) {
-                    //tasksDataSource.beginEdits();
+                    tasksDataSource.beginEdits();
                     tasksDataSource.change(items[0].key, {name:"Changed!"}).done(function () {
-                       // tasksDataSource.endEdits();
+                       tasksDataSource.endEdits();
                     });
                 });
             }

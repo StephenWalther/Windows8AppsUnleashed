@@ -5,43 +5,93 @@
 function init() {
 
     WinJS.UI.processAll().done(function () {
-        var lvTasks = document.getElementById("lvTasks").winControl;
+        var lvMovies = document.getElementById("lvMovies").winControl;
 
-        // Bind the ListView to its data source
-        var tasksDataSource = new DataSources.IndexedDbDataSource("TasksDB", 1, "tasks", upgrade);
-        lvTasks.itemDataSource = tasksDataSource;
+        // Create the data source options
+        var createOptions = {
+            databaseName: "MoviesDB",
+            databaseVersion: 1,
+            indexNames: ["category"]
+        };
 
-        // Wire-up Add, Delete, Nuke buttons
+        // Create the IndexedDB data source
+        var moviesDataSource = new DataSources.IndexedDbDataSource("movies", createOptions);
+
+        // Add seed data
+        addSeedData().done(function () {
+
+            // Bind data source to ListView
+            lvMovies.itemDataSource = moviesDataSource;
+        });
+
+
+        function addSeedData() {
+            return new WinJS.Promise(function (complete) {
+                moviesDataSource.getCount().then(function (count) {
+                    if (count > 0) {
+                        complete();
+                    } else {
+                        var seedData = [
+                            { title: "Star Wars", category: "SciFi" },
+                            { title: "Forbidden Planet", category: "SciFi" },
+                            { title: "Show Boat", category: "Musical" }
+                        ];
+
+                        var promises = [];
+                        seedData.forEach(function (data) {
+                            promises.push(moviesDataSource.insertAtEnd(null, data));
+                        });
+                        WinJS.Promise.join(promises).done(function () {
+                            complete();
+                        });
+                    }
+                });
+            });
+        }
+
+
+        // Wire-up SelectCategory, Add, Delete, Nuke buttons
+        document.getElementById("selectCategory").addEventListener("change", function (evt) {
+            var category = document.getElementById("selectCategory").value;
+            if (category === "All") {
+                moviesDataSource = new DataSources.IndexedDbDataSource("movies", createOptions);
+            } else {
+                var cursorOptions = {
+                    indexName: "category",
+                    only: document.getElementById("selectCategory").value
+                };
+                moviesDataSource = new DataSources.IndexedDbDataSource("movies", createOptions, cursorOptions);
+            }
+            lvMovies.itemDataSource = moviesDataSource;
+        });
+
+
         document.getElementById("frmAdd").addEventListener("submit", function (evt) {
             evt.preventDefault();
-            tasksDataSource.beginEdits();
-            tasksDataSource.insertAtEnd(null, {
-                name: document.getElementById("inputTaskName").value
+            moviesDataSource.beginEdits();
+            moviesDataSource.insertAtEnd(null, {
+                title: document.getElementById("inputMovieTitle").value,
+                category: document.getElementById("selectMovieCategory").value
             }).done(function (newItem) {
-                tasksDataSource.endEdits();
+                moviesDataSource.endEdits();
                 document.getElementById("frmAdd").reset();
-                lvTasks.ensureVisible(newItem.index);
+                lvMovies.ensureVisible(newItem.index);
             });
         });
 
         document.getElementById("btnDelete").addEventListener("click", function () {
-            if (lvTasks.selection.count() == 1) {
-                lvTasks.selection.getItems().done(function (items) {
-                    tasksDataSource.remove(items[0].data.id);
+            if (lvMovies.selection.count() == 1) {
+                moviesDataSource.beginEdits();
+                lvMovies.selection.getItems().done(function (items) {
+                    moviesDataSource.remove(items[0].key);
+                    moviesDataSource.endEdits();
                 });
             }
         });
 
         document.getElementById("btnNuke").addEventListener("click", function () {
-            tasksDataSource.nuke();
+            moviesDataSource.nuke();
         });
-
-        // This method is called to initialize the IndexedDb database
-        function upgrade(evt) {
-            var newDB = evt.target.result;
-            newDB.createObjectStore("tasks", { keyPath: "id", autoIncrement: true });
-        }
-
 
     });
 }

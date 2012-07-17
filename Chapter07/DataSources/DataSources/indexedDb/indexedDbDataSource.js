@@ -6,12 +6,20 @@
     *************************************************/
 
     var IndexedDbDataAdapter = WinJS.Class.define(
-        function (dbName, dbVersion, objectStoreName, upgrade, error) {
-            this._dbName = dbName;  // database name
-            this._dbVersion = dbVersion;  // database version
-            this._objectStoreName = objectStoreName; // object store name
-            this._upgrade = upgrade; // database upgrade script
-            this._error = error || function (evt) { console.log(evt.message); };
+        function (objectStoreName, createOptions, cursorOptions) {
+            this._objectStoreName = objectStoreName;
+
+            // {objectStoreName:'customers', indexNames:['lastName','ssn'], seedData:[]}
+            createOptions.databaseName = createOptions.databaseName || "myDatabase";
+            createOptions.databaseVersion = createOptions.databaseVersion || 1;
+            createOptions.keyPath = createOptions.keyPath || "id";
+            createOptions.indexNames = createOptions.indexNames || [];
+            createOptions.seedData = createOptions.seedData || [];
+            this._createOptions = createOptions;
+
+
+            // {indexName:'lastName', direction: 'prev', only: 'Beverages'}
+            this._cursorOptions = cursorOptions;
         },
         {
 
@@ -23,7 +31,15 @@
                 var that = this;
                 return new WinJS.Promise(function (complete, error) {
                     that._getObjectStore().then(function (store) {
-                        var reqCount = store.count();
+                        var reqCount;
+                        if (that._cursorOptions) {
+                            var cursorOptions = that._cursorOptions;
+                            var index = store.index(cursorOptions.indexName);
+                            var keyRange = that._createKeyRange(cursorOptions);
+                            reqCount = index.count(keyRange);
+                        } else {
+                            reqCount = store.count();
+                        }
                         reqCount.onerror = that._error;
                         reqCount.onsuccess = function (evt) {
                             complete(evt.target.result);
@@ -44,21 +60,30 @@
                         var endIndex = Math.min(count, requestIndex + countAfter + 1);
 
                         that._getObjectStore().then(function (store) {
-                            var index = 0;
+                            var currentIndex = 0;
                             var items = [];
-                            var req = store.openCursor();
+                            var req;
+
+                            if (that._cursorOptions) {
+                                var cursorOptions = that._cursorOptions;
+                                var index = store.index(cursorOptions.indexName);
+                                var keyRange = that._createKeyRange(cursorOptions);
+                                req = index.openCursor(keyRange);
+                            } else {
+                                req = store.openCursor();
+                            }
                             req.onerror = that._error;
                             req.onsuccess = function (evt) {
                                 var cursor = evt.target.result;
 
-                                if (index < startIndex) {
-                                    index = startIndex;
+                                if (currentIndex < startIndex) {
+                                    currentIndex = startIndex;
                                     cursor.advance(startIndex);
                                     return;
                                 }
 
-                                if (cursor && index < endIndex) {
-                                    index++;
+                                if (cursor && currentIndex < endIndex) {
+                                    currentIndex++;
                                     items.push({
                                         key: cursor.value[store.keyPath].toString(),
                                         data: cursor.value
@@ -102,6 +127,21 @@
             },
 
 
+            remove:function(key) {
+                var that = this;
+                return new WinJS.Promise(function (complete, error) {
+                    that._getObjectStore("readwrite").done(function (store) {
+                        key = parseInt(key);
+                        var reqDelete = store.delete (key);
+                        reqDelete.onerror = that._error;
+                        reqDelete.onsuccess = function (evt) {
+                            complete();
+                        };
+                    });
+                });
+            },
+
+
             setNotificationHandler: function (notificationHandler) {
                 this._notificationHandler = notificationHandler;
             },
@@ -110,21 +150,6 @@
             /*****************************************
             *  IndexedDbDataSource Method
             ******************************************/
-
-
-            removeInternal: function(key) {
-                var that = this;
-                return new WinJS.Promise(function (complete, error) {
-                    that._getObjectStore("readwrite").done(function (store) {
-                        var reqDelete = store.delete (key);
-                        reqDelete.onerror = that._error;
-                        reqDelete.onsuccess = function (evt) {
-                            that._notificationHandler.removed(key.toString());
-                            complete();
-                        };
-                    });
-                });
-            },
 
 
             nuke: function () {
@@ -157,18 +182,31 @@
 
                 // Otherwise, open the database
                 return new WinJS.Promise(function (complete, error, progress) {
-                    var reqOpen = window.indexedDB.open(that._dbName, that._dbVersion);
-                    reqOpen.onerror = function (evt) {
-                        error();
-                    };
-                    reqOpen.onupgradeneeded = function (evt) {
-                        that._upgrade(evt);
-                        that._notificationHandler.invalidateAll();
-                    };
+                    var createOptions = that._createOptions;
+                    var reqOpen = window.indexedDB.open(createOptions.databaseName, createOptions.databaseVersion);
+                    reqOpen.onerror = that._error;
                     reqOpen.onsuccess = function () {
                         that._cachedDb = reqOpen.result;
                         complete(that._cachedDb);
                     };
+
+                    // Create the database if new
+                    reqOpen.onupgradeneeded = function (evt) {
+                        var newDB = evt.target.result;
+
+                        // Create the database
+                        var store = newDB.createObjectStore(that._objectStoreName,
+                            {
+                                keyPath: createOptions.keyPath,
+                                autoIncrement: true
+                            });
+
+                        // Add the indexes
+                        for (var i = 0; i < createOptions.indexNames.length; i++) {
+                            var indexName = createOptions.indexNames[i];
+                            store.createIndex(indexName, indexName);
+                        }
+                    }
                 });
             },
 
@@ -179,7 +217,8 @@
                 return new WinJS.Promise(function (complete, error) {
                     that._ensureDbOpen().then(function (db) {
                         var transaction = db.transaction(that._objectStoreName, type);
-                        complete(transaction.objectStore(that._objectStoreName));
+                        var store = transaction.objectStore(that._objectStoreName);
+                        complete(store);
                     });
                 });
             },
@@ -194,6 +233,15 @@
                         };
                     });
                 });
+            },
+
+
+            _createKeyRange:function(cursorOptions) {
+                return IDBKeyRange.only(cursorOptions.only);
+            },
+
+            _error: function (evt) {
+                console.log(evt.message);
             }
 
 
@@ -202,19 +250,17 @@
 
     var IndexedDbDataSource = WinJS.Class.derive(
         WinJS.UI.VirtualizedDataSource,
-        function (dbName, dbVersion, objectStoreName, upgrade, error) {
-            this._adapter = new IndexedDbDataAdapter(dbName, dbVersion, objectStoreName, upgrade, error);
+        function (objectStoreName, createOptions, cursorOptions) {
+            this._adapter = new IndexedDbDataAdapter(objectStoreName, createOptions, cursorOptions);
             this._baseDataSourceConstructor(this._adapter);
         },
         {
-            nuke: function () {
-                this._adapter.nuke();
+            get: function(key, index) {
+                return this._adapter.get(key, index);
             },
-
-            remove: function (key) {
-                this._adapter.removeInternal(key);
+            nuke: function () {
+                return this._adapter.nuke();
             }
-
         }
     );
 

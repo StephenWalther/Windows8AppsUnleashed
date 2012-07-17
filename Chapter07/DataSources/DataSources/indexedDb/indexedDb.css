@@ -1,6 +1,6 @@
-﻿.taskItem {
+﻿.movieItem {
     width: 300px;
-    height: 80px;
+    height: 100px;
     padding: 10px;
     border: solid 1px white;
 }

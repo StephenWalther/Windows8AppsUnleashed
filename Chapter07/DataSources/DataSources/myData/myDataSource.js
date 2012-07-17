@@ -30,20 +30,12 @@
                 var startIndex = Math.max(0, requestIndex - countBefore);
                 var subItems = this._arrayData.slice(startIndex);
 
-                var bob = {
-                    items: subItems,
-                    offset: requestIndex - startIndex,
-                    totalCount: this._arrayData.length
-                };
-
                 return WinJS.Promise.wrap({
                     items: subItems,
                     offset: requestIndex - startIndex,
                     totalCount: this._arrayData.length
                 });
             },
-
-
 
 
             //insertAtEnd: function (unused, data) {
@@ -61,42 +53,40 @@
             },
 
 
+            remove: function (key) {
+                var i = this._getIndexFromKey(key);
+                this._arrayData.splice(i, 1);
+                return WinJS.Promise.wrap(null);
+            },
+
+            change: function (key, data, indexHint) {
+                var newItem = {
+                    key: key,
+                    data: data
+                };
+                var i = this._getIndexFromKey(key);
+                this._arrayData[i] = data;
+                return new WinJS.Promise.wrap(newItem);
+            },
 
 
-remove: function (key) {
-    var i = this._getIndexFromKey(key);
-    this._arrayData.splice(i, 1);
-    return WinJS.Promise.wrap(null);
-},
-
-change: function (key, data, indexHint) {
-    var newItem = {
-        key: key,
-        data: data
-    };
-    var i = this._getIndexFromKey(key);
-    this._arrayData[i] = data;
-    return new WinJS.Promise.wrap(newItem);
-},
+            _getIndexFromKey: function (key) {
+                for (var i = 0; i < this._arrayData.length; i++) {
+                    if (this._arrayData[i].key == key) {
+                        return i;
+                    }
+                }
+            },
 
 
-_getIndexFromKey: function (key) {
-    for (var i = 0; i < this._arrayData.length; i++) {
-        if (this._arrayData[i].key == key) {
-            return i;
-        }
-    }
-},
+            setNotificationHandler: function (notificationHandler) {
+                this._notificationHandler = notificationHandler;
+            },
 
-
-setNotificationHandler: function (notificationHandler) {
-    this._notificationHandler = notificationHandler;
-},
-
-nuke: function () {
-    this._arrayData = [];
-    this._notificationHandler.reload();
-}
+            nuke: function () {
+                this._arrayData = [];
+                this._notificationHandler.reload();
+            }
 
 
         }
