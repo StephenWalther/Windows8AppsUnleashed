@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter03</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- Chapter03 references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="dataBindingControls.js"></script>
+</head>
+<body>
+
+    <div 
+        data-win-control="WinJS.UI.Rating"
+        data-win-bind="winControl.averageRating:averageRating">
+    </div>
+
+    <div>
+        The average rating for this product is:
+        <span data-win-bind="innerText:averageRating"></span>
+    </div>
+
+</body>
+</html>

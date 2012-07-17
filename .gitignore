@@ -1,1 +1,5 @@
-*/bin/*
+bin/
+bld/
+*.suo
+*.jsproj.user
+obj/

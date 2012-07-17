@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>0cd25590-0e15-4446-91f0-65c0da5adf98</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <PropertyGroup>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageCertificateKeyFile>Chapter05_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="default.html" />
+    <Content Include="dynamicTemplate\dynamicTemplate.css" />
+    <Content Include="dynamicTemplate\dynamicTemplate.html" />
+    <Content Include="dynamicTemplate\dynamicTemplate.js" />
+    <Content Include="filtering\filtering.css" />
+    <Content Include="filtering\filtering.html" />
+    <Content Include="filtering\filtering.js" />
+    <Content Include="grouping\grouping.css" />
+    <Content Include="grouping\grouping.html" />
+    <Content Include="grouping\grouping.js" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\smalllogo.png" />
+    <Content Include="images\splashscreen.png" />
+    <Content Include="images\storelogo.png" />
+    <Content Include="js\default.js" />
+    <Content Include="css\default.css" />
+    <Content Include="layout\layout.css" />
+    <Content Include="layout\layout.html" />
+    <Content Include="layout\layout.js" />
+    <Content Include="listViewItemLayout\listViewItemLayout.css" />
+    <Content Include="listViewItemLayout\listViewItemLayout.html" />
+    <Content Include="listViewItemLayout\listViewItemLayout.js" />
+    <Content Include="masterDetail\masterDetail.css" />
+    <Content Include="masterDetail\masterDetail.html" />
+    <Content Include="masterDetail\masterDetail.js" />
+    <Content Include="incremental\incremental.css" />
+    <Content Include="incremental\incremental.html" />
+    <Content Include="incremental\incremental.js" />
+    <Content Include="selectMultiple\selectMultiple.css" />
+    <Content Include="selectMultiple\selectMultiple.html" />
+    <Content Include="selectMultiple\selectMultiple.js" />
+    <Content Include="semanticZoom\semanticZoom.css" />
+    <Content Include="semanticZoom\semanticZoom.html" />
+    <Content Include="semanticZoom\semanticZoom.js" />
+    <Content Include="simple\simple.css" />
+    <Content Include="simple\simple.html" />
+    <Content Include="simple\simple.js" />
+    <Content Include="blog\blog.css" />
+    <Content Include="blog\blog.js" />
+    <Content Include="blog\blog.html" />
+    <Content Include="sorting\sorting.css" />
+    <Content Include="sorting\sorting.html" />
+    <Content Include="sorting\sorting.js" />
+    <None Include="Chapter05_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

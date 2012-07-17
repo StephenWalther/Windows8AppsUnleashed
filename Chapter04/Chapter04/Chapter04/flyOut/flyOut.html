@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter04</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- Chapter04 references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="flyOut.js"></script>
+</head>
+<body>
+
+    <!-- Flyout Control -->
+    <div id="flyTypeface"
+        data-win-control="WinJS.UI.Flyout">
+        <label>Select Typeface:</label>
+        <select id="selectTypeface">
+            <option>Arial</option>
+            <option>Impact</option>
+            <option>Comic Sans MS</option>
+        </select>
+    </div>
+
+    <!-- Button which opens FlyOut -->
+    <button id="btnTypeface">Select Typeface</button>
+
+    
+    <!-- The text to style -->
+    <p id="pText">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elite 
+        Maecenas porttitor congue massa. Fusce posuere, magna sed 
+        pulvinar ultricies, purus lectus malesuada libero, sit amet 
+        commodo magna eros quis urna.
+    </p>
+
+</body>
+</html>

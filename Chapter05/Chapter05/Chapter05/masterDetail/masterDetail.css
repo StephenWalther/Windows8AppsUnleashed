@@ -1,0 +1,28 @@
+﻿
+#container {
+    display:-ms-grid;
+    -ms-grid-columns: 1fr 2fr;
+}
+
+#lvCategories {
+    -ms-grid-column:1;
+}
+
+#lvProducts {
+    -ms-grid-column:2;
+}
+
+
+.categoryItem {
+    border: solid 1px white;
+    padding: 10px;
+}
+
+
+
+.productItem {
+    border: solid 1px white;
+    padding: 10px;
+}
+
+

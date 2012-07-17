@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter03</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- Chapter03 references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/dataBinding/dataBinding.js"></script>
+</head>
+<body>
+
+    <h1>Product Details</h1>
+ 
+    <div>
+        Product Name:
+        <span data-win-bind="innerText:name"></span>
+    </div>
+    <div>
+        Product Price:
+        <span data-win-bind="innerText:price"></span>
+    </div>
+    <div>
+        Product Picture:
+        <br />
+        <img data-win-bind="src:photo;alt:name" />
+    </div>
+</body>
+</html>

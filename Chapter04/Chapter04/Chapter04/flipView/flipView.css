@@ -1,0 +1,10 @@
+﻿
+#fvArticles {
+    width: 600px;
+    height: 300px;
+}
+
+#fvArticles .articleItem {
+    width: 500px;
+    padding: 10px;
+}

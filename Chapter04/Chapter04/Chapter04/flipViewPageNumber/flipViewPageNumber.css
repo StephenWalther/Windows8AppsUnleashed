@@ -1,0 +1,16 @@
+﻿
+#fvArticles {
+    width: 600px;
+    height: 200px;
+}
+
+#fvArticles .articleItem {
+    width: 500px;
+    padding: 10px;
+}
+
+
+#divPageNumber {
+    margin-left: 50px;
+    font-size: x-large;
+}

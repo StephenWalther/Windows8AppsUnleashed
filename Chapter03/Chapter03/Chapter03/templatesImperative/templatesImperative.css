@@ -1,0 +1,10 @@
+﻿body {
+}
+
+
+.product {
+    margin:10px;
+    padding:10px;
+    border: solid 2px white;
+    width:400px;
+}

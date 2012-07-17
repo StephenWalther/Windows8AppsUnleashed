@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DataSources</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- DataSources references -->
+    <link href="myData.css" rel="stylesheet" />
+    <script type="text/javascript" src="myDataSource.js"></script>
+    <script src="myData.js"></script>
+</head>
+<body>
+
+    <div id="tmplTask" data-win-control="WinJS.Binding.Template">
+        <div class="taskItem">
+            <span data-win-bind="innerText:name"></span>
+        </div>
+    </div>
+
+
+    <div id="lvTasks" 
+        data-win-control="WinJS.UI.ListView"
+        data-win-options="{
+            itemTemplate: select('#tmplTask'),
+            selectionMode: 'single'
+        }"></div>
+
+    
+    <form id="frmAdd">
+        <fieldset>
+            <legend>Add Task</legend>
+            <label>New Task</label>
+            <input id="inputTaskName" required />
+            <button>Add</button>
+        </fieldset>
+    </form>
+
+    <button id="btnNuke">Nuke</button>
+    <button id="btnDelete">Delete</button>
+    <button id="btnEdit">Edit</button>
+
+</body>
+</html>
