@@ -9,16 +9,18 @@
         function (objectStoreName, createOptions, cursorOptions) {
             this._objectStoreName = objectStoreName;
 
-            // {objectStoreName:'customers', indexNames:['lastName','ssn'], seedData:[]}
+            // {objectStoreName:'customers', indexNames:['lastName','ssn']}
             createOptions.databaseName = createOptions.databaseName || "myDatabase";
             createOptions.databaseVersion = createOptions.databaseVersion || 1;
             createOptions.keyPath = createOptions.keyPath || "id";
             createOptions.indexNames = createOptions.indexNames || [];
-            createOptions.seedData = createOptions.seedData || [];
             this._createOptions = createOptions;
 
 
             // {indexName:'lastName', direction: 'prev', only: 'Beverages'}
+            if (cursorOptions) {
+                cursorOptions.direction = cursorOptions.direction || "next";
+            }
             this._cursorOptions = cursorOptions;
         },
         {
@@ -68,7 +70,7 @@
                                 var cursorOptions = that._cursorOptions;
                                 var index = store.index(cursorOptions.indexName);
                                 var keyRange = that._createKeyRange(cursorOptions);
-                                req = index.openCursor(keyRange);
+                                req = index.openCursor(keyRange, cursorOptions.direction);
                             } else {
                                 req = store.openCursor();
                             }
@@ -236,12 +238,21 @@
             },
 
 
-            _createKeyRange:function(cursorOptions) {
-                return IDBKeyRange.only(cursorOptions.only);
+            _createKeyRange: function (cursorOptions) {
+                if (cursorOptions.only) {
+                    return IDBKeyRange.only(cursorOptions.only);
+                } else if (cursorOptions.lowerBound && cursorOptions.upperBound) {
+                    return IDBKeyRange.bound(cursorOptions.lower, cursorOptions.upperBound);
+                } else if (cursorOptions.upperBound) {
+                    return IDBKeyRange.upperBound(cursorOptions.upperBound);
+                } else if (cursorOptions.lowerBound) {
+                    return IDBKeyRange.lowerBound(cursorOptions.lowerBound);
+                }
+                return null;
             },
 
             _error: function (evt) {
-                console.log(evt.message);
+                console.log(evt);
             }
 
 

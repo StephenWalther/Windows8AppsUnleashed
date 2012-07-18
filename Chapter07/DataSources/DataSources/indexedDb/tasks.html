@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DataSources</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- DataSources references -->
+    <link href="indexedDb.css" rel="stylesheet" />
+    <script type="text/javascript" src="indexedDbDataSource.js"></script>
+</head>
+<body>
+
+    <div id="tmplTask" data-win-control="WinJS.Binding.Template">
+        <div class="movieItem">
+            Id: <span data-win-bind="innerText:id"></span>
+            <br /><br />
+            Name: <span data-win-bind="innerText:title"></span>
+            <br /><br />
+            Date: <span data-win-bind="innerText:dateCreated"></span>
+        </div>
+    </div>
+
+
+    <div id="lvTasks" 
+        data-win-control="WinJS.UI.ListView"
+        data-win-options="{
+            itemTemplate: select('#tmplTask'),
+            selectionMode: 'single'
+        }"></div>
+
+
+
+
+    <script type="text/javascript"> 
+
+WinJS.UI.processAll().done(function () {
+
+    var lvTasks = document.getElementById("lvTasks").winControl;
+
+
+    var createOptions = {
+        indexNames: ["dateCreated"],
+        databaseVersion: 3
+    };
+
+    var cursorOptions = {
+        indexName: "dateCreated",
+        upperBound: new Date("1/1/1999")
+    };
+
+    var tasksDataSource = new DataSources.IndexedDbDataSource("tasks", createOptions, cursorOptions);
+    lvTasks.itemDataSource = tasksDataSource;
+
+
+    //tasksDataSource.insertAtEnd(null, {title:"write book", dateCreated:new Date("1/2/2000")});
+    //tasksDataSource.insertAtEnd(null, { title: "write book", dateCreated: new Date("1/2/1988") });
+    //tasksDataSource.insertAtEnd(null, { title: "write book", dateCreated: new Date("1/2/1966") });
+
+});
+    </script>
+
+
+</body>
+</html>

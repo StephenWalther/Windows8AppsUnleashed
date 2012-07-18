@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DataSources</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+</head>
+<body>
+
+
+    <script type="text/javascript"> 
+
+        var reqOpen = window.indexedDB.open("TasksDB", 2);
+        reqOpen.onupgradeneeded = function (evt) {
+            var newDB = evt.target.result;
+            var store=newDB.createObjectStore("tasks", { keyPath: "id", autoIncrement: true });
+            store.createIndex("dateCreatedIndex", "dateCreated");
+        };
+        reqOpen.onsuccess = function () {
+            var db = reqOpen.result;
+
+
+var transaction = db.transaction("tasks", "readwrite");
+var store = transaction.objectStore("tasks");
+var reqAdd = store.add({
+    name: "Feed the dog",
+    dateCreated: new Date("12/25/1966")
+});
+reqAdd.onsuccess = function() {
+    // Task added successfully
+};
+
+
+
+//var transaction = db.transaction("tasks");
+//var store = transaction.objectStore("tasks");
+//var reqCount = store.count();
+//reqCount.onsuccess = function (evt) {
+//    var count = evt.target.result;
+//    console.log(count);
+//};
+
+
+
+var items = [];
+var transaction = db.transaction("tasks");
+var store = transaction.objectStore("tasks");
+var index = store.index("dateCreatedIndex");
+var keyRange = IDBKeyRange.upperBound(new Date("1/1/1999"));
+var req = index.openCursor(keyRange);
+req.onsuccess = function (evt) {
+    var cursor = evt.target.result;
+    if (cursor) {
+        items.push(cursor.value);
+        cursor.continue();
+    } else {
+        // All done!
+        var count = items.length;
+    }
+}
+
+
+
+
+
+
+
+var transaction = db.transaction("tasks");
+var store = transaction.objectStore("tasks");
+var index = store.index("dateCreatedIndex");
+var keyRange = IDBKeyRange.upperBound(new Date("1/1/1999"));
+var req = index.count(keyRange);
+req.onsuccess = function (evt) {
+    var count = evt.target.result;
+}
+
+
+
+
+
+        };
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

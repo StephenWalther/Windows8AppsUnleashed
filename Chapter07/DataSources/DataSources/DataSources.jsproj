@@ -59,6 +59,7 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="indexedDb\tasks.html" />
     <Content Include="indexedDb\indexedDb.css" />
     <Content Include="indexedDb\indexedDb.html" />
     <Content Include="indexedDb\indexedDb.js" />
@@ -69,6 +70,7 @@
     <Content Include="myData\myData.html" />
     <Content Include="myData\myData.js" />
     <Content Include="myData\myDataSource.js" />
+    <Content Include="test.html" />
     <Content Include="webService\webService.css" />
     <Content Include="webService\webService.html" />
     <Content Include="webService\webService.js" />
