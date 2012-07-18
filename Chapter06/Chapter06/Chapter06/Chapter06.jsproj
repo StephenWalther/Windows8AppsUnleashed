@@ -32,10 +32,10 @@
     <ProjectConfiguration Include="Release|x86">
       <Configuration>Release</Configuration>
       <Platform>x86</Platform>
-    </ProjectConfiguration>  
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>6b2cca28-6bde-4302-8ff6-0d0d984cf350</ProjectGuid>
+    <ProjectGuid>0cd25590-0e15-4446-91f0-65c0da5adf98</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
@@ -51,12 +51,48 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="default.html" />
+    <Content Include="dynamicTemplate\dynamicTemplate.css" />
+    <Content Include="dynamicTemplate\dynamicTemplate.html" />
+    <Content Include="dynamicTemplate\dynamicTemplate.js" />
+    <Content Include="filtering\filtering.css" />
+    <Content Include="filtering\filtering.html" />
+    <Content Include="filtering\filtering.js" />
+    <Content Include="grouping\grouping.css" />
+    <Content Include="grouping\grouping.html" />
+    <Content Include="grouping\grouping.js" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
+    <Content Include="layout\layout.css" />
+    <Content Include="layout\layout.html" />
+    <Content Include="layout\layout.js" />
+    <Content Include="listViewItemLayout\listViewItemLayout.css" />
+    <Content Include="listViewItemLayout\listViewItemLayout.html" />
+    <Content Include="listViewItemLayout\listViewItemLayout.js" />
+    <Content Include="masterDetail\masterDetail.css" />
+    <Content Include="masterDetail\masterDetail.html" />
+    <Content Include="masterDetail\masterDetail.js" />
+    <Content Include="incremental\incremental.css" />
+    <Content Include="incremental\incremental.html" />
+    <Content Include="incremental\incremental.js" />
+    <Content Include="selectMultiple\selectMultiple.css" />
+    <Content Include="selectMultiple\selectMultiple.html" />
+    <Content Include="selectMultiple\selectMultiple.js" />
+    <Content Include="semanticZoom\semanticZoom.css" />
+    <Content Include="semanticZoom\semanticZoom.html" />
+    <Content Include="semanticZoom\semanticZoom.js" />
+    <Content Include="simple\simple.css" />
+    <Content Include="simple\simple.html" />
+    <Content Include="simple\simple.js" />
+    <Content Include="blog\blog.css" />
+    <Content Include="blog\blog.js" />
+    <Content Include="blog\blog.html" />
+    <Content Include="sorting\sorting.css" />
+    <Content Include="sorting\sorting.html" />
+    <Content Include="sorting\sorting.js" />
     <None Include="Chapter06_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

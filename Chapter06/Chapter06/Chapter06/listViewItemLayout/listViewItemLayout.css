@@ -1,0 +1,43 @@
+﻿
+/* Applied to entire ListView */
+/*#lvProducts .win-listview {
+    width: 100%;
+    height: 300px;
+}
+
+
+
+#lvProducts .win-container {
+    width: 800px;
+    height: 500px;
+}
+
+
+*/
+
+/*#lvProducts .win-container {
+    margin:0px;
+    padding:0px;
+}
+
+*/
+
+/*#lvProducts .win-item {
+    border: solid 1px white;
+    padding: 10px;
+}*/
+
+#lvProducts .productItem {
+    border: solid 1px white;
+    padding: 10px;
+} 
+
+#lvProducts.win-listview {
+    width: 300px;
+}
+
+/* Applied to DIV element inside ListView Item Template*/
+/*#lvProducts .productItem {
+    border: solid 1px white;
+    padding: 10px;
+}*/
