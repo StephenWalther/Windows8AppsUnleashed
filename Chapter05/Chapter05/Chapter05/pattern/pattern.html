@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+
+    </head>
+    <body style="padding:10px">
+
+        <form>
+            <div>
+                <label>
+                    Social Security Number:
+                    <input id="ssn"
+                        required
+                        pattern="^\d{3}-\d{2}-\d{4}$"
+                        title="###-##-####" />
+                </label>
+            </div>
+            <div>
+                <input type="submit" />
+            </div>
+        </form>
+
+
+    </body>
+</html>

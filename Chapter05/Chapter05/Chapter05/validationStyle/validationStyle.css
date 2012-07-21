@@ -1,0 +1,22 @@
+﻿
+:valid {
+    background-color: green;
+}
+
+:invalid {
+    background-color: yellow;
+}
+
+:optional {
+    border: 4px solid green;
+}
+
+:required {
+    border: 4px solid red;
+}
+
+div {
+    padding: 5px;
+}
+
+
