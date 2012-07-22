@@ -76,6 +76,10 @@
     <Content Include="css\default.css" />
     <Content Include="menu\menu.html" />
     <Content Include="menu\menu.js" />
+    <Content Include="messageDialogYesNo\messageDialogYesNo.html" />
+    <Content Include="messageDialogYesNo\messageDialogYesNo.js" />
+    <Content Include="messageDialog\messageDialog.html" />
+    <Content Include="messageDialog\messageDialog.js" />
     <None Include="Chapter08_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
