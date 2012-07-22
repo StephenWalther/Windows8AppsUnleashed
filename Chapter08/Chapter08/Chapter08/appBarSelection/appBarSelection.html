@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter04</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="appBarSelection.css" />
+
+    <script type="text/javascript" src="myDataSource.js"></script>
+    <script src="appBarSelection.js"></script>
+</head>
+<body>
+
+
+<!-- Template Control -->    
+<div id="tmplTask" data-win-control="WinJS.Binding.Template">
+    <div class="taskItem">
+        <span data-win-bind="innerText:name"></span>
+    </div>
+</div>
+
+
+<!-- ListView Control -->
+
+<div id="lvTasks" 
+    data-win-control="WinJS.UI.ListView"
+    data-win-options="{
+        itemTemplate: select('#tmplTask'),
+        selectionMode: 'single'
+    }"></div>
+
+<!-- Flyout Control -->
+<div id="flyAdd"
+    data-win-control="WinJS.UI.Flyout">
+    <form id="frmAdd">
+        <label>
+            New Task:
+            <input id="inputTaskName" required />
+        </label>
+        <button>Add</button>
+</form>
+</div>
+
+<!-- AppBar Control -->
+<div id="appBar1"
+    data-win-control="WinJS.UI.AppBar">
+    <button data-win-control="WinJS.UI.AppBarCommand" 
+        data-win-options="{
+            id:'cmdAdd',
+            label:'Add',
+            icon:'add',
+            tooltip:'Add Task',
+            type: 'flyout',
+            flyout: select('#flyAdd'),
+            section: 'global'
+        }">
+    </button>
+    <button data-win-control="WinJS.UI.AppBarCommand" 
+        data-win-options="{
+            id:'cmdDelete',
+            label:'Delete',
+            icon:'delete',
+            tooltip:'Delete Task',
+            section: 'selection',
+            extraClass:'appBarSelection'
+        }">
+    </button>
+</div>
+
+
+
+</body>
+</html>

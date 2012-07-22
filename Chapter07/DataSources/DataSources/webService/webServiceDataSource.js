@@ -134,6 +134,33 @@
             },
 
 
+
+
+            change: function (key, data, indexHint) {
+                var that = this;
+                return new WinJS.Promise(function (complete, error) {
+                    var options = {
+                        url: that._url + "/change",
+                        type: "PUT",
+                        data: JSON.stringify(data),
+                        headers: {
+                            "Content-type": "application/json;charset=UTF-8",
+                            authenticationToken: that._authenticationToken
+                        }
+                    };
+                    WinJS.xhr(options).then(
+                        function (xhr) {
+                            complete();
+                        },
+                        function (xhr) {
+                            console.log("Could not call change()");
+                        }
+                    );
+                });
+            },
+
+
+
             nuke: function () {
                 var that = this;
                 return new WinJS.Promise(function (complete, error) {

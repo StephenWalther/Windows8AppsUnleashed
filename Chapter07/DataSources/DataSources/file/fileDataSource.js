@@ -80,7 +80,7 @@
                         };
                         data.items[i] = changedItem;
                         that._saveData(data).then(function () {
-                            complete(changedItem);
+                            complete();
                         });
                     });
                 });

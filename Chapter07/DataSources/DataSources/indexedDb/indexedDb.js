@@ -89,6 +89,19 @@ function init() {
             }
         });
 
+        document.getElementById("btnEdit").addEventListener("click", function () {
+            if (lvMovies.selection.count() == 1) {
+                lvMovies.selection.getItems().done(function (items) {
+                    moviesDataSource.beginEdits();
+                    var movieToChange = items[0].data;
+                    movieToChange.title = "Changed!";
+                    moviesDataSource.change(items[0].key, movieToChange).done(function () {
+                        moviesDataSource.endEdits();
+                    });
+                });
+            }
+        });
+
         document.getElementById("btnNuke").addEventListener("click", function () {
             moviesDataSource.nuke();
         });

@@ -40,6 +40,21 @@ function init() {
             }
         });
 
+
+        document.getElementById("btnEdit").addEventListener("click", function () {
+            if (lvTasks.selection.count() == 1) {
+                lvTasks.selection.getItems().done(function (items) {
+                    tasksDataSource.beginEdits();
+                    var taskToChange = items[0].data;
+                    taskToChange.name = "Changed!";
+                    tasksDataSource.change(items[0].key, taskToChange).done(function () {
+                        tasksDataSource.endEdits();
+                    });
+                });
+            }
+        });
+
+
         document.getElementById("btnNuke").addEventListener("click", function () {
             tasksDataSource.beginEdits();
             tasksDataSource.nuke().done(function () {

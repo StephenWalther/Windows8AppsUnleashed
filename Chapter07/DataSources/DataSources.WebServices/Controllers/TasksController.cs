@@ -51,6 +51,18 @@ namespace DataSources.WebServices.Controllers
             return taskToInsert;
         }
 
+
+        [HttpPut]
+        public bool Change(Task taskToChange)
+        {
+            _db.Entry(taskToChange).State = System.Data.EntityState.Modified;
+            _db.SaveChanges();
+
+            return true;
+        }
+
+
+
         [HttpDelete]
         public bool Remove(string key)
         {

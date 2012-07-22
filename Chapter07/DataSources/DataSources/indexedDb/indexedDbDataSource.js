@@ -144,6 +144,23 @@
             },
 
 
+
+            change: function (key, data, indexHint) {
+                var that = this;
+                return new WinJS.Promise(function (complete, error) {
+                    that._getObjectStore("readwrite").done(function (store) {
+                        key = parseInt(key);
+                        var unwrappedData = WinJS.Binding.unwrap(data);
+                        var reqPut = store.put (unwrappedData);
+                        reqPut.onerror = that._error;
+                        reqPut.onsuccess = function (evt) {
+                            complete();
+                        };
+                    });
+                });
+            },
+
+
             setNotificationHandler: function (notificationHandler) {
                 this._notificationHandler = notificationHandler;
             },

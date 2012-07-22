@@ -32,6 +32,14 @@ namespace DataSources.WebServices
                 defaults: new { controller = "tasks", action = "insertAtEnd" }
             );
 
+
+            routes.MapHttpRoute(
+                name: "TasksChange",
+                routeTemplate: "api/tasks/change",
+                defaults: new { controller = "tasks", action = "change" }
+            );
+
+
             routes.MapHttpRoute(
                 name: "TasksRemove",
                 routeTemplate: "api/tasks/remove/{key}",

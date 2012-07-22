@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter04</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="appBarTop.js"></script>
+</head>
+<body>
+
+    
+    <!-- Top AppBar Control -->
+    <div id="appBar1" 
+        data-win-control="WinJS.UI.AppBar"
+        data-win-options="{
+            placement:'top'
+        }">
+
+        <!-- AppBar Commands -->
+        <button data-win-control="WinJS.UI.AppBarCommand" 
+            data-win-options="{
+                id:'cmdSave',
+                label:'Save',
+                icon:'save',
+                tooltip:'Save Song List'
+            }">
+        </button>
+
+    </div>
+
+
+
+    <!-- Bottom AppBar Control -->
+    <div id="appBar2"
+        data-win-control="WinJS.UI.AppBar">
+
+        <!-- AppBar Commands -->
+        <button data-win-control="WinJS.UI.AppBarCommand" 
+            data-win-options="{
+                id:'cmdPlay',
+                label:'Play',
+                icon:'play',
+                tooltip:'Play Song'
+            }">
+        </button>
+        <button data-win-control="WinJS.UI.AppBarCommand" 
+            data-win-options="{
+                id:'cmdPause',
+                label:'Pause',
+                icon:'pause',
+                tooltip:'Pause Song'
+            }">
+        </button>
+
+
+    </div>
+
+</body>
+</html>

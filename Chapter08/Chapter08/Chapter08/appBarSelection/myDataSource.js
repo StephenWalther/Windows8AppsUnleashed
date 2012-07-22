@@ -92,21 +92,21 @@
         }
     );
 
-var MyDataSource = WinJS.Class.derive(
-    WinJS.UI.VirtualizedDataSource,
-    function (fileName) {
-        this._adapter = new MyDataAdapter();
-        this._baseDataSourceConstructor(this._adapter);
-    },
-    {
-        nuke: function () {
-            this._adapter.nuke();
+    var MyDataSource = WinJS.Class.derive(
+        WinJS.UI.VirtualizedDataSource,
+        function (fileName) {
+            this._adapter = new MyDataAdapter();
+            this._baseDataSourceConstructor(this._adapter);
+        },
+        {
+            nuke: function () {
+                this._adapter.nuke();
+            }
         }
-    }
-);
+    );
 
-WinJS.Namespace.define("DataSources", {
-    MyDataSource: MyDataSource
-});
+    WinJS.Namespace.define("DataSources", {
+        MyDataSource: MyDataSource
+    });
 
 })();

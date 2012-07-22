@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chapter04</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="appBarCommands.js"></script>
+</head>
+<body>
+
+<!-- AppBar Control -->
+<div id="appBar1"
+    data-win-control="WinJS.UI.AppBar">
+
+    <!-- AppBar Commands -->
+    <button data-win-control="WinJS.UI.AppBarCommand" 
+        data-win-options="{
+            id:'cmdPlay',
+            label:'Play',
+            icon:'play',
+            tooltip:'Play Song'
+        }">
+    </button>
+    <button data-win-control="WinJS.UI.AppBarCommand" 
+        data-win-options="{
+            id:'cmdMute',
+            type: 'toggle',
+            label:'Mute',
+            icon:'mute',
+            tooltip:'Mute Song'
+        }">
+    </button>
+    <hr data-win-control="WinJS.UI.AppBarCommand" 
+        data-win-options="{
+            type: 'separator'
+        }" />
+    <button data-win-control="WinJS.UI.AppBarCommand" 
+        data-win-options="{
+            id:'cmdAddSong',
+            type: 'flyout',
+            label:'Add',
+            icon:'add',
+            tooltip:'Add Song',
+            flyout: select('#flyAddSong')
+        }">
+    </button>
+
+
+</div>
+
+<!-- Add Song Flyout -->
+<div id="flyAddSong" 
+    data-win-control="WinJS.UI.Flyout">
+    <form>
+        <input id="inpNewSong" required />
+        <input type="submit" value="Add" />
+    </form>
+</div>
+
+
+</body>
+</html>
