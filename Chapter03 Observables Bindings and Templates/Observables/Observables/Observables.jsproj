@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>2c4976fa-0fd6-413d-910a-025c70a1f495</ProjectGuid>
+    <ProjectGuid>75418909-7d6f-45d4-8514-18259391fe08</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
@@ -44,14 +44,24 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>Chapter09_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Chapter03_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="appEvents\appEvents.html" />
-    <Content Include="appEvents\appEvents.js" />
+    <Content Include="dataBindingControls\dataBindingControls.html" />
+    <Content Include="dataBindingControls\dataBindingControls.js" />
+    <Content Include="dataBindingConverters\dataBindingConverters.html" />
+    <Content Include="dataBindingConverters\dataBindingConverters.js" />
+    <Content Include="dataBindingConverters\myBindingConverters.js" />
+    <Content Include="dataBindingObservables\dataBindingObservables.html" />
+    <Content Include="dataBindingObservables\dataBindingObservables.js" />
+    <Content Include="dataBindingTwoWay\dataBindingTwoWay.html" />
+    <Content Include="dataBindingTwoWay\dataBindingTwoWay.js" />
+    <Content Include="dataBinding\dataBinding.html" />
+    <Content Include="dataBinding\dataBinding.js" />
+    <Content Include="dataBinding\tesla.jpg" />
     <Content Include="default.html" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
@@ -59,8 +69,34 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="mediaQueries\mediaQueries.html" />
-    <None Include="AppEvents_TemporaryKey.pfx" />
+    <Content Include="observablesBypass\observablesBypass.html" />
+    <Content Include="observablesBypass\observablesBypass.js" />
+    <Content Include="observablesCoalesce\observablesCoalesce.html" />
+    <Content Include="observablesCoalesce\observablesCoalesce.js" />
+    <Content Include="observablesComplex\observablesComplex.html" />
+    <Content Include="observablesComplex\observablesComplex.js" />
+    <Content Include="observablesListBinding\observablesListBinding.html" />
+    <Content Include="observablesListBinding\observablesListBinding.js" />
+    <Content Include="observablesList\observablesList.html" />
+    <Content Include="observablesList\observablesList.js" />
+    <Content Include="observablesPromise\observablesPromise.html" />
+    <Content Include="observablesPromise\observablesPromise.js" />
+    <Content Include="observables\observables.html" />
+    <Content Include="observables\observables.js" />
+    <Content Include="templatesDeclare\templatesDeclare.css" />
+    <Content Include="templatesDeclare\templatesDeclare.html" />
+    <Content Include="templatesDeclare\templatesDeclare.js" />
+    <Content Include="templatesExternal\productTemplate.html" />
+    <Content Include="templatesExternal\templatesExternal.css" />
+    <Content Include="templatesExternal\templatesExternal.html" />
+    <Content Include="templatesExternal\templatesExternal.js" />
+    <Content Include="templatesImperative\templatesImperative.css" />
+    <Content Include="templatesImperative\templatesImperative.html" />
+    <Content Include="templatesImperative\templatesImperative.js" />
+    <Content Include="templatesQuery\templatesQuery.css" />
+    <Content Include="templatesQuery\templatesQuery.html" />
+    <Content Include="templatesQuery\templatesQuery.js" />
+    <None Include="Observables_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />

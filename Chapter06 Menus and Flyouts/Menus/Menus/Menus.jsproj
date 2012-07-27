@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>2c4976fa-0fd6-413d-910a-025c70a1f495</ProjectGuid>
+    <ProjectGuid>a505c3d5-824f-48e3-a2ac-fee4d2758f21</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
@@ -44,23 +44,43 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>Chapter09_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Chapter08_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="appEvents\appEvents.html" />
-    <Content Include="appEvents\appEvents.js" />
+    <Content Include="appBarCommands\appBarCommands.html" />
+    <Content Include="appBarCommands\appBarCommands.js" />
+    <Content Include="appBarSelection\appBarSelection.css" />
+    <Content Include="appBarSelection\appBarSelection.html" />
+    <Content Include="appBarSelection\appBarSelection.js" />
+    <Content Include="appBarSelection\myDataSource.js" />
+    <Content Include="appBarTop\appBarTop.js" />
+    <Content Include="appBarTop\appBarTop.html" />
+    <Content Include="appBar\appBar.html" />
+    <Content Include="appBar\appBar.js" />
+    <Content Include="appSettings\aboutSettings.html" />
+    <Content Include="appSettings\appSettings.html" />
+    <Content Include="appSettings\appSettings.js" />
+    <Content Include="appSettings\personalSettings.html" />
+    <Content Include="appSettings\personalSettings.js" />
     <Content Include="default.html" />
+    <Content Include="flyout\flyout.html" />
+    <Content Include="flyout\flyout.js" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="mediaQueries\mediaQueries.html" />
-    <None Include="AppEvents_TemporaryKey.pfx" />
+    <Content Include="menu\menu.html" />
+    <Content Include="menu\menu.js" />
+    <Content Include="messageDialogYesNo\messageDialogYesNo.html" />
+    <Content Include="messageDialogYesNo\messageDialogYesNo.js" />
+    <Content Include="messageDialog\messageDialog.html" />
+    <Content Include="messageDialog\messageDialog.js" />
+    <None Include="Menus_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />

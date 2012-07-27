@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>2c4976fa-0fd6-413d-910a-025c70a1f495</ProjectGuid>
+    <ProjectGuid>2a9399ce-ee2b-4b35-ab60-61129a330ba6</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
@@ -44,23 +44,39 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>Chapter09_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Chapter05_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="appEvents\appEvents.html" />
-    <Content Include="appEvents\appEvents.js" />
+    <Content Include="contentEditable\contentEditable.html" />
+    <Content Include="custom\custom.html" />
+    <Content Include="custom\custom.js" />
     <Content Include="default.html" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="inputEmail\inputEmail.html" />
+    <Content Include="inputEmail\inputEmail.js" />
+    <Content Include="inputList\inputList.html" />
+    <Content Include="inputNumber\inputNumber.html" />
+    <Content Include="inputNumber\inputNumber.js" />
+    <Content Include="inputRange\inputRange.html" />
+    <Content Include="inputTypes\inputTypes.html" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="mediaQueries\mediaQueries.html" />
-    <None Include="AppEvents_TemporaryKey.pfx" />
+    <Content Include="pattern\pattern.html" />
+    <Content Include="placeholder\placeholder.html" />
+    <Content Include="progress\progress.html" />
+    <Content Include="progress\progress.js" />
+    <Content Include="required\required.html" />
+    <Content Include="reset\reset.html" />
+    <Content Include="reset\reset.js" />
+    <Content Include="validationStyle\validationStyle.css" />
+    <Content Include="validationStyle\validationStyle.html" />
+    <None Include="Forms_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />

@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>2c4976fa-0fd6-413d-910a-025c70a1f495</ProjectGuid>
+    <ProjectGuid>dde5138e-ef8e-48c5-86d9-957bfc5406c0</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
@@ -44,23 +44,59 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>Chapter09_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Chapter02_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="appEvents\appEvents.html" />
-    <Content Include="appEvents\appEvents.js" />
+    <Content Include="classes\classes.html" />
+    <Content Include="classes\classes.js" />
     <Content Include="default.html" />
+    <Content Include="derive\derive.html" />
+    <Content Include="derive\derive.js" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="mediaQueries\mediaQueries.html" />
-    <None Include="AppEvents_TemporaryKey.pfx" />
+    <Content Include="mixinMultiple\mixinMultiple.html" />
+    <Content Include="mixinMultiple\mixinMultiple.js" />
+    <Content Include="modules\modules.html" />
+    <Content Include="modules\modules.js" />
+    <Content Include="namespaces\namespaces.html" />
+    <Content Include="namespaces\namespaces.js" />
+    <Content Include="mixins\mixins.html" />
+    <Content Include="mixins\mixins.js" />
+    <Content Include="promiseCancel\promiseCancel.html" />
+    <Content Include="promiseCancel\promiseCancel.js" />
+    <Content Include="promiseChain\promiseChain.html" />
+    <Content Include="promiseChain\promiseChain.js" />
+    <Content Include="promiseCompose\promiseCompose.html" />
+    <Content Include="promiseCompose\promiseCompose.js" />
+    <Content Include="promiseCreate\promiseCreate.html" />
+    <Content Include="promiseCreate\promiseCreate.js" />
+    <Content Include="promiseErrors\promiseErrors.html" />
+    <Content Include="promiseErrors\promiseErrors.js" />
+    <Content Include="promises\promises.html" />
+    <Content Include="promises\promises.js" />
+    <Content Include="promiseTimeout\promiseTimeout.html" />
+    <Content Include="promiseTimeout\promiseTimeout.js" />
+    <Content Include="responseTypes\responseTypes.html" />
+    <Content Include="responseTypes\responseTypes.js" />
+    <Content Include="selectorsChildren\selectorsChildren.html" />
+    <Content Include="selectorsChildren\selectorsChildren.js" />
+    <Content Include="selectorsId\selectorsId.html" />
+    <Content Include="selectorsId\selectorsId.js" />
+    <Content Include="selectorsQuery\selectorsQuery.html" />
+    <Content Include="selectorsQuery\selectorsQuery.js" />
+    <Content Include="xhrCustom\products.txt" />
+    <Content Include="xhrCustom\xhrCustom.html" />
+    <Content Include="xhrCustom\xhrCustom.js" />
+    <Content Include="xhr\xhr.html" />
+    <Content Include="xhr\xhr.js" />
+    <None Include="Fundamentals_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
