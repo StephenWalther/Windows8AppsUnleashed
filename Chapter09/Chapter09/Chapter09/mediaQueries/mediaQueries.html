@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style type="text/css"> 
+            /* Default Styles */
+            .displayInMedium, .displayInHigh {
+                display:none;               
+            }
+            
+            /* Greater than or equal to 1,366px */
+            @media screen and (min-width:1366px) {
+               .displayInMedium {
+                 display: block;
+              }
+            }            
+                      
+            /* Greater than or equal to 1,920px */
+            @media screen and (min-width:1920px) {
+               .displayInMedium, .displayInHigh {
+                 display: block;
+              }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>You can see me at all resolutions.</h1>
+        </div>
+
+        <div class="displayInMedium">
+            <h1>You can see me at medium resolutions.</h1>
+        </div>
+
+        <div class="displayInHigh">
+            <h1>You can see me at high resolutions.</h1>
+        </div>
+    </body>
+</html>
