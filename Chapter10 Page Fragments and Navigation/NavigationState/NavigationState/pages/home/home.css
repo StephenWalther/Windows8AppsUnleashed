@@ -13,3 +13,10 @@
         margin-left: 100px;
     }
 }
+
+.categoryItem {
+    width: 300px;
+    font-size: large;
+    padding: 10px;
+    border: 1px solid white;
+}

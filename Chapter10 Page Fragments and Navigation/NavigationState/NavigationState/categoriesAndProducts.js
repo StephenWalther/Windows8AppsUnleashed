@@ -16,6 +16,14 @@
                 { productName: "Oranges", price: 4.55 },
                 { productName: "Grapes", price: 3.01 }
             ]
+        },
+        {
+            categoryName: "Meat",
+            products: [
+                { productName: "Steak", price: 12.27 },
+                { productName: "Lobster", price: 42.55 },
+                { productName: "Rabbit", price: 13.01 }
+            ]
         }
     ];
 

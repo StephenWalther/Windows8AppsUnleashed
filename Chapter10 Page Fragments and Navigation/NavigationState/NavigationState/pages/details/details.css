@@ -1,3 +1,24 @@
-﻿.details p {
+﻿
+.details section[role=main] {
     margin-left: 120px;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .details section[role=main] {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (-ms-view-state: portrait) {
+    .details section[role=main] {
+        margin-left: 100px;
+    }
+}
+
+
+.productItem {
+    width: 300px;
+    font-size: large;
+    padding: 10px;
+    border: 1px solid white;
 }
