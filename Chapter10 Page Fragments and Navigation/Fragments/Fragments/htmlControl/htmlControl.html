@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Fragments</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <script type="text/javascript" src="htmlControl.js"></script>
+</head>
+<body>
+    <h1>Order Form</h1>
+    <form id="frmOrder">
+    <fieldset>
+        <legend>Billing Address</legend>
+        <div id="divBillingAddress"
+            data-win-control="WinJS.UI.HtmlControl"
+            data-win-options="{
+                uri: 'address.html'
+            }"></div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Shipping Address</legend>
+        <div id="divShippingAddress"
+            data-win-control="WinJS.UI.HtmlControl"
+            data-win-options="{
+                uri: 'address.html'
+            }"></div>
+    </fieldset>
+
+    <input type="submit" value="Submit Order" />
+    </form>
+</body>
+</html>
