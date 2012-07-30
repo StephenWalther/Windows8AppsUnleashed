@@ -46,35 +46,35 @@
                         + "&countBefore=" + countBefore
                         + "&countAfter=" + countAfter;
 
-                    var options = {
-                        url: url,
-                        headers: { authenticationToken: that._authenticationToken }
-                    };
-                    WinJS.xhr(options).then(
-                        function (xhr) {
-                            var data = JSON.parse(xhr.response);
+                        var options = {
+                            url: url,
+                            headers: {authenticationToken: that._authenticationToken}
+                        };
+                        WinJS.xhr(options).then(
+                            function (xhr) {
+                                var data = JSON.parse(xhr.response);
 
-                            var items = [];
-                            for (var i = 0; i < data.items.length; i++) {
-                                items.push({
-                                    key: data.items[i][that._key].toString(),
-                                    data: data.items[i]
+                                var items = [];
+                                for (var i = 0; i < data.items.length; i++) {
+                                    items.push({
+                                        key: data.items[i][that._key].toString(),
+                                        data: data.items[i]
+                                    });
+                                }
+ 
+                                complete({
+                                    items: items,
+                                    offset: data.offset,
+                                    totalCount: data.totalCount
                                 });
+
+                            },
+                            function (xhr) {
+                                console.log("Could not call itemsFromIndex()");
+                                debugger;
                             }
-
-                            complete({
-                                items: items,
-                                offset: data.offset,
-                                totalCount: data.totalCount
-                            });
-
-                        },
-                        function (xhr) {
-                            console.log("Could not call itemsFromIndex()");
-                            debugger;
-                        }
-                    );
-                });
+                        );
+                    });
             },
 
 
@@ -115,7 +115,7 @@
             },
 
 
-            remove: function (key) {
+            remove: function(key) {
                 var that = this;
                 return new WinJS.Promise(function (complete) {
                     var options = {

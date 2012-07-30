@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DataSources</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- My references -->
+    <link href="webService.css" rel="stylesheet" />
+    <script type="text/javascript" src="/LiveSDKHTML/js/wl.js"></script>
+    <script type="text/javascript" src="webServiceDataSource.js"></script>
+    <script src="webService.js"></script>
+</head>
+<body>
+
+    <div id="tmplTask" data-win-control="WinJS.Binding.Template">
+        <div class="taskItem">
+            Id: <span data-win-bind="innerText:id"></span>
+            <br /><br />
+            Name: <span data-win-bind="innerText:name"></span>
+            <br /><br />
+            Date Created: <span data-win-bind="innerText:dateCreated"></span>
+        </div>
+    </div>
+
+
+    <div id="lvTasks" 
+        data-win-control="WinJS.UI.ListView"
+        data-win-options="{
+            itemTemplate: select('#tmplTask'),
+            selectionMode: 'none'
+        }"></div>
+
+
+</body>
+</html>

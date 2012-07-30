@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Security</title>
+        <script type="text/javascript" src="signInSettings.js"></script>
+    </head>
+    <body>
+        <div id="divSignIn" 
+            data-win-control="WinJS.UI.SettingsFlyout"
+            data-win-options="{
+                width:'narrow'
+            }">
+            <div class="win-header" 
+                style="background-color:#464646">
+                <button 
+                    onclick="WinJS.UI.SettingsFlyout.show()" 
+                    class="win-backbutton"></button>
+                <div class="win-label">Sign-in</div>
+            </div>
+            <div class="win-content">
+
+                <div id="divSignInControl"></div>
+
+            </div>
+        </div>
+    </body>
+</html>
