@@ -50,6 +50,7 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="basicInfo\basicInfo.css" />
     <Content Include="basicInfo\basicInfo.html" />
     <Content Include="basicInfo\basicInfo.js" />
     <Content Include="default.html" />
@@ -68,6 +69,15 @@
     <Content Include="signIn\signInSettings.js" />
     <Content Include="signIn\signIn.html" />
     <Content Include="signIn\signIn.js" />
+    <Content Include="skyDriveDownload\skyDriveDownload.css" />
+    <Content Include="skyDriveDownload\skyDriveDownload.html" />
+    <Content Include="skyDriveDownload\skyDriveDownload.js" />
+    <Content Include="skyDriveList\skyDriveList.css" />
+    <Content Include="skyDriveList\skyDriveList.html" />
+    <Content Include="skyDriveList\skyDriveList.js" />
+    <Content Include="skyDriveUpload\skyDriveUpload.css" />
+    <Content Include="skyDriveUpload\skyDriveUpload.html" />
+    <Content Include="skyDriveUpload\skyDriveUpload.js" />
     <Content Include="webService\webService.css" />
     <Content Include="webService\webService.html" />
     <Content Include="webService\webService.js" />
