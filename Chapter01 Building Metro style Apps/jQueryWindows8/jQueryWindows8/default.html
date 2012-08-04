@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>jQueryWindows8</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- jQueryWindows8 references -->
+    <script type="text/javascript" src="Scripts/jquery-1.7.2.js"></script>
+
+    <style type="text/css"> 
+        #divMessage {
+            display:none;
+            padding:10px;
+            border: solid 1px white;
+            background-color: #ff6a00;
+        }           
+    </style>
+</head>
+<body>
+    <button id="btnShow">Click Here</button>
+    <div id="divMessage">
+        Secret Message
+    </div>
+
+    <script type="text/javascript">
+        $("#btnShow").click(function () {
+            $("#divMessage").fadeToggle("slow");
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
+   to .win-surface. */
+.itemspage .itemslist .win-horizontal.win-viewport .win-surface {
+    margin-bottom: 60px;
+    margin-left: 115px;
+    margin-top: 7px;
+}
+
+.itemspage .itemslist {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+    .itemspage .itemslist .win-item {
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 1fr 90px;
+        display: -ms-grid;
+        height: 250px;
+        width: 250px;
+    }
+
+        .itemspage .itemslist .win-item .item-image {
+            -ms-grid-row-span: 2;
+        }
+
+        .itemspage .itemslist .win-item .item-overlay {
+            -ms-grid-row: 2;
+            -ms-grid-rows: 1fr 21px;
+            display: -ms-grid;
+            padding: 6px 15px 2px 15px;
+        }
+
+            .itemspage .itemslist .win-item .item-overlay .item-title {
+                -ms-grid-row: 1;
+                overflow: hidden;
+                width: 220px;
+            }
+
+            .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+                -ms-grid-row: 2;
+                width: 220px;
+            }
+
+@media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
+    .itemspage .itemslist .win-item .item-overlay {
+        background: rgba(0,0,0,0.65);
+    }
+
+        .itemspage .itemslist .win-item .item-overlay .item-title {
+            color: rgba(255,255,255,0.87);
+        }
+
+        .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .itemspage .itemslist .win-vertical.win-viewport .win-surface {
+        margin-bottom: 30px;
+        margin-left: 6px;
+    }
+
+    .itemspage .itemslist .win-vertical.win-viewport .win-container {
+        margin-bottom: 15px;
+        margin-right: 42px;
+        padding: 7px;
+    }
+
+    .itemspage .itemslist .win-item {
+        -ms-grid-columns: 60px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+        height: 60px;
+        width: 272px;
+    }
+
+        .itemspage .itemslist .win-item .item-image, .itemspage .itemslist .win-item:hover .item-image {
+            -ms-grid-column: 1;
+            -ms-grid-row-span: 1;
+            height: 60px;
+            width: 60px;
+        }
+
+        .itemspage .itemslist .win-item .item-overlay {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: stretch;
+            background: transparent;
+            display: inline-block;
+            margin-left: 10px;
+            padding: 0;
+        }
+
+            .itemspage .itemslist .win-item .item-overlay .item-title {
+                max-height: 40px;
+                margin-top: 4px;
+                width: 202px;
+            }
+
+            .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+                opacity: 0.6;
+                width: 202px;
+            }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .itemspage .itemslist .win-horizontal.win-viewport .win-surface {
+        margin-left: 100px;
+    }
+}

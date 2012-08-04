@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>App1</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- App1 references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+</head>
+<body>
+    
+    <img id="imgPhoto" src="/images/placeholder.png" />
+    
+    <!-- AppBar Control -->
+    <div id="appBar1"
+        data-win-control="WinJS.UI.AppBar">
+        <button data-win-control="WinJS.UI.AppBarCommand" 
+            data-win-options="{
+                id:'cmdTakePicture',
+                label:'Take Picture',
+                icon:'camera',
+                tooltip:'Take Picture'
+            }">
+        </button>
+    </div>
+</body>
+</html>
