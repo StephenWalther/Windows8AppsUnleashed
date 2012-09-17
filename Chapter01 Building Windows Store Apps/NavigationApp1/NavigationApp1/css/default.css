@@ -1,8 +1,4 @@
-﻿html {
-    cursor: default;
-}
-
-#contenthost {
+﻿#contenthost {
     height: 100%;
     width: 100%;
 }
@@ -10,7 +6,7 @@
 .fragment {
     /* Define a grid with rows for a banner and a body */
     -ms-grid-columns: 1fr;
-    -ms-grid-rows: 128px 1fr 0px;
+    -ms-grid-rows: 128px 1fr;
     display: -ms-grid;
     height: 100%;
     width: 100%;

@@ -11,6 +11,7 @@ var options = {
 WinJS.xhr(options).done(
     function (xhr) {
         var result = xhr.response;  // xhr.response is a document
+        console.log("result is a " + typeof (result));
     }
 );
 };

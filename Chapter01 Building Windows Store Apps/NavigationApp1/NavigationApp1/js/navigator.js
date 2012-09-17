@@ -2,20 +2,17 @@
     "use strict";
 
     var appView = Windows.UI.ViewManagement.ApplicationView;
-    var displayProps = Windows.Graphics.Display.DisplayProperties;
     var nav = WinJS.Navigation;
-    var ui = WinJS.UI;
-    var utils = WinJS.Utilities;
 
     WinJS.Namespace.define("Application", {
         PageControlNavigator: WinJS.Class.define(
             // Define the constructor function for the PageControlNavigator.
             function PageControlNavigator(element, options) {
-                this.element = element || document.createElement("div");
-                this.element.appendChild(this._createPageElement());
+                this._element = element || document.createElement("div");
+                this._element.appendChild(this._createPageElement());
 
                 this.home = options.home;
-                this.lastViewstate = appView.value;
+                this._lastViewstate = appView.value;
 
                 nav.onnavigated = this._navigated.bind(this);
                 window.onresize = this._resized.bind(this);
@@ -26,12 +23,23 @@
 
                 Application.navigator = this;
             }, {
-                /// <field domElement="true" />
-                element: null,
                 home: "",
-                lastViewstate: 0,
+                /// <field domElement="true" />
+                _element: null,
+                _lastNavigationPromise: WinJS.Promise.as(),
+                _lastViewstate: 0,
 
-                // This function creates a new container for each page.
+                // This is the currently loaded Page object.
+                pageControl: {
+                    get: function () { return this.pageElement && this.pageElement.winControl; }
+                },
+
+                // This is the root element of the current page.
+                pageElement: {
+                    get: function () { return this._element.firstElementChild; }
+                },
+
+                // Creates a container for a new page to be loaded into.
                 _createPageElement: function () {
                     var element = document.createElement("div");
                     element.style.width = "100%";
@@ -39,15 +47,25 @@
                     return element;
                 },
 
-                // This function responds to keypresses to only navigate when
-                // the backspace key is not used elsewhere.
+                // Retrieves a list of animation elements for the current page.
+                // If the page does not define a list, animate the entire page.
+                _getAnimationElements: function () {
+                    if (this.pageControl && this.pageControl.getAnimationElements) {
+                        return this.pageControl.getAnimationElements();
+                    }
+                    return this.pageElement;
+                },
+
+                // Navigates back whenever the backspace key is pressed and
+                // not captured by an input field.
                 _keypressHandler: function (args) {
                     if (args.key === "Backspace") {
                         nav.back();
                     }
                 },
 
-                // This function responds to keyup to enable keyboard navigation.
+                // Navigates back or forward when alt + left or alt + right
+                // key combinations are pressed.
                 _keyupHandler: function (args) {
                     if ((args.key === "Left" && args.altKey) || (args.key === "BrowserBack")) {
                         nav.back();
@@ -56,6 +74,8 @@
                     }
                 },
 
+                // This function responds to clicks to enable navigation using
+                // back and forward mouse buttons.
                 _mspointerupHandler: function (args) {
                     if (args.button === 3) {
                         nav.back();
@@ -64,42 +84,44 @@
                     }
                 },
 
-                // This function responds to navigation by adding new pages
-                // to the DOM.
+                // Responds to navigation by adding new pages to the DOM.
                 _navigated: function (args) {
-                    var that = this;
-                    var oldElement = that.pageElement;
-                    var newElement = that._createPageElement();
+                    var newElement = this._createPageElement();
                     var parentedComplete;
                     var parented = new WinJS.Promise(function (c) { parentedComplete = c; });
 
-                    args.detail.setPromise(
-                        WinJS.Promise.timeout().then(function () {
-                            if (oldElement.winControl && oldElement.winControl.unload) {
-                                oldElement.winControl.unload();
-                            }
-                            return WinJS.UI.Pages.render(args.detail.location, newElement, args.detail.state, parented);
-                        }).then(function parentElement(control) {
-                            that.element.appendChild(newElement);
-                            that.element.removeChild(oldElement);
-                            oldElement.innerText = "";
-                            that.navigated();
-                            parentedComplete();
-                        })
-                    );
+                    this._lastNavigationPromise.cancel();
+
+                    this._lastNavigationPromise = WinJS.Promise.timeout().then(function () {
+                        return WinJS.UI.Pages.render(args.detail.location, newElement, args.detail.state, parented);
+                    }).then(function parentElement(control) {
+                        var oldElement = this.pageElement;
+                        if (oldElement.winControl && oldElement.winControl.unload) {
+                            oldElement.winControl.unload();
+                        }
+                        this._element.appendChild(newElement);
+                        this._element.removeChild(oldElement);
+                        oldElement.innerText = "";
+                        this._updateBackButton();
+                        parentedComplete();
+                        WinJS.UI.Animation.enterPage(this._getAnimationElements()).done();
+                    }.bind(this));
+
+                    args.detail.setPromise(this._lastNavigationPromise);
                 },
 
+                // Responds to resize events and call the updateLayout function
+                // on the currently loaded page.
                 _resized: function (args) {
                     if (this.pageControl && this.pageControl.updateLayout) {
-                        this.pageControl.updateLayout.call(this.pageControl, this.pageElement, appView.value, this.lastViewstate);
+                        this.pageControl.updateLayout.call(this.pageControl, this.pageElement, appView.value, this._lastViewstate);
                     }
-                    this.lastViewstate = appView.value;
+                    this._lastViewstate = appView.value;
                 },
 
-                // This function updates application controls once a navigation
-                // has completed.
-                navigated: function () {
-                    // Do application specific on-navigated work here
+                // Updates the back button state. Called after navigation has
+                // completed.
+                _updateBackButton: function () {
                     var backButton = this.pageElement.querySelector("header[role=banner] .win-backbutton");
                     if (backButton) {
                         backButton.onclick = function () { nav.back(); };
@@ -111,16 +133,6 @@
                         }
                     }
                 },
-
-                // This is the PageControlNavigator object.
-                pageControl: {
-                    get: function () { return this.pageElement && this.pageElement.winControl; }
-                },
-
-                // This is the root element of the current page.
-                pageElement: {
-                    get: function () { return this.element.firstElementChild; }
-                }
             }
         )
     });
