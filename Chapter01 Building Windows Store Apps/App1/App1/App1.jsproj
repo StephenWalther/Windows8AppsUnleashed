@@ -35,7 +35,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>ecd3447f-0998-4921-a2c6-c68a53a058fb</ProjectGuid>
+    <ProjectGuid>5aec60ce-612b-46b8-bf73-29032c2cdcb9</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0'">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
@@ -44,7 +47,7 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>jQueryWindows8_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>App1_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -52,26 +55,27 @@
     </AppxManifest>
     <Content Include="default.html" />
     <Content Include="images\logo.png" />
+    <Content Include="images\placeholder.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="packages.config" />
-    <Content Include="Scripts\jquery-1.7.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.2.js" />
-    <Content Include="Scripts\jquery-1.7.2.min.js" />
-    <None Include="jQueryWindows8_TemporaryKey.pfx" />
+    <None Include="App1_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
+    <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below then uncomment
+       that target and the DisableFastUpToDateCheck PropertyGroup. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
   </Target>
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
   -->
 </Project>

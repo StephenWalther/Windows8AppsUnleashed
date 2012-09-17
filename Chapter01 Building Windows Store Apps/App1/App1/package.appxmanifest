@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="18b49eb7-f54f-4da8-9184-7efc4f58ef19" Version="1.0.0.0" Publisher="CN=Stephen" />
+  <Identity Name="5aec60ce-612b-46b8-bf73-29032c2cdcb9" Version="1.0.0.0" Publisher="CN=Stephen" />
   <Properties>
     <DisplayName>App1</DisplayName>
     <PublisherDisplayName>Stephen</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Prerequisites>
-    <OSMinVersion>6.2.0</OSMinVersion>
-    <OSMaxVersionTested>6.2.0</OSMaxVersionTested>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
     <Resource Language="x-generate" />
