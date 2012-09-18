@@ -1,5 +1,5 @@
-﻿/// <reference path="//Microsoft.WinJS.1.0.RC/js/base.js" />
-/// <reference path="//Microsoft.WinJS.1.0.RC/js/ui.js" />
+﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
+/// <reference path="//Microsoft.WinJS.1.0/js/ui.js" />
 function init() {
 
     WinJS.UI.processAll().done(function () {
