@@ -21,12 +21,16 @@
             // Enable incremental loading
             lvProducts.loadingBehavior = "incremental";
             lvProducts.automaticallyLoadPages = true; 
-            lvProducts.pagesToLoad = 10;
+            lvProducts.pagesToLoad = 5;
 
             // Bind the list of products to the ListView
             lvProducts.itemDataSource = listProducts.dataSource;
 
 
+            // Create a handler for loading pages manually
+            document.getElementById("btnLoad").addEventListener("click", function () {
+                lvProducts.loadMorePages();
+            });
 
         });
     }

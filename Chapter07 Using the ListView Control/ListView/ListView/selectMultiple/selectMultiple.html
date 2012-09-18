@@ -5,9 +5,9 @@
     <title>Chapter05</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
-    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
-    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
     <!-- Chapter05 references -->
     <link href="selectMultiple.css" rel="stylesheet" />
@@ -33,26 +33,29 @@
     </div>
 
     <div id="container">
-
-        <!-- Products ListView -->
-        <div id="lvProducts"
-            data-win-control="WinJS.UI.ListView"
-            data-win-options="{
-                itemTemplate: select('#tmplProduct'),
-                selectionMode: 'multi',                
-                tapBehavior: 'toggleSelect',
-                swipeBehavior: 'select'
-            }"></div>
-
-        <!-- Shopping Cart ListView -->
-        <div id="lvShoppingCart"
-            data-win-control="WinJS.UI.ListView"
-            data-win-options="{
-                itemTemplate: select('#tmplShoppingCart'),
-                selectionMode: 'none',
-                layout: {type: WinJS.UI.ListLayout}
-            }"></div>
-
+        <div id="containerProducts">
+            <h1>Products</h1>
+            <!-- Products ListView -->
+            <div id="lvProducts"
+                data-win-control="WinJS.UI.ListView"
+                data-win-options="{
+                    itemTemplate: select('#tmplProduct'),
+                    selectionMode: 'multi',                
+                    tapBehavior: 'toggleSelect',
+                    swipeBehavior: 'select'
+                }"></div>
+        </div>
+        <div id="containerShoppingCart">
+            <h1>Shopping Cart</h1>
+            <!-- Shopping Cart ListView -->
+            <div id="lvShoppingCart"
+                data-win-control="WinJS.UI.ListView"
+                data-win-options="{
+                    itemTemplate: select('#tmplShoppingCart'),
+                    selectionMode: 'none',
+                    layout: {type: WinJS.UI.ListLayout}
+                }"></div>
+        </div>
     </div>
 
 </body>

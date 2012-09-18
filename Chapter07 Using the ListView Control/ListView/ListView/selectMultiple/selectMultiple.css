@@ -4,11 +4,11 @@
     -ms-grid-columns: 2fr 1fr;
 }
 
-#lvProducts {
+#containerProducts {
     -ms-grid-column:1;
 }
 
-#lvShoppingCart {
+#containerShoppingCart {
     -ms-grid-column:2;
     background-color:#ff6a00;
 }
