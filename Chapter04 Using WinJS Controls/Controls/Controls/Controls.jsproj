@@ -65,12 +65,15 @@
     <Content Include="declarative\declarative.html" />
     <Content Include="declarative\declarative.js" />
     <Content Include="default.html" />
+    <Content Include="flipViewButtons\articles.js" />
     <Content Include="flipViewButtons\flipViewButtons.css" />
     <Content Include="flipViewButtons\flipViewButtons.html" />
     <Content Include="flipViewButtons\flipViewButtons.js" />
+    <Content Include="flipViewPageNumber\articles.js" />
     <Content Include="flipViewPageNumber\flipViewPageNumber.css" />
     <Content Include="flipViewPageNumber\flipViewPageNumber.html" />
     <Content Include="flipViewPageNumber\flipViewPageNumber.js" />
+    <Content Include="flipView\articles.js" />
     <Content Include="flipView\flipView.css" />
     <Content Include="flipView\flipView.html" />
     <Content Include="flipView\flipView.js" />
@@ -116,7 +119,7 @@
     <None Include="Controls_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
+    <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

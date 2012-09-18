@@ -5,12 +5,13 @@
     <title>Chapter04</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
-    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
-    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
     <!-- Chapter04 references -->
     <link rel="stylesheet" type="text/css" href="flipViewPageNumber.css" />
+    <script src="articles.js"></script>
     <script src="flipViewPageNumber.js"></script>
 </head>
 <body>
@@ -28,6 +29,7 @@
     <div id="fvArticles"
         data-win-control="WinJS.UI.FlipView"
         data-win-options="{
+            itemDataSource: MyData.listArticles.dataSource,
             itemTemplate: select('#tmplArticle')
         }"></div>
 
