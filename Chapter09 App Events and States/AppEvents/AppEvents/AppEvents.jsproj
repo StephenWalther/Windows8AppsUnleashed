@@ -44,12 +44,22 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>Chapter09_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>AppEvents_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="mediaMatch\mediaMatch.html" />
+    <Content Include="mediaMatch\mediaMatch.js" />
+    <Content Include="sessionState\sessionState.html" />
+    <Content Include="sessionState\sessionState.js" />
+    <Content Include="customEvents\customEvents.html" />
+    <Content Include="customEvents\customEvents.js" />
+    <Content Include="handleError\handleError.html" />
+    <Content Include="handleError\handleError.js" />
+    <Content Include="activated\activated.html" />
+    <Content Include="activated\activated.js" />
     <Content Include="appEvents\appEvents.html" />
     <Content Include="appEvents\appEvents.js" />
     <Content Include="default.html" />
@@ -63,7 +73,7 @@
     <None Include="AppEvents_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
+    <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
