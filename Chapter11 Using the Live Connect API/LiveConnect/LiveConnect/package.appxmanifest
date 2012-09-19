@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="BUILD.68a33133-e890-4241-bf84-95f7fe9496c0" Version="1.0.0.0" Publisher="CN=Stephen" />
+  <Identity Name="BUILD.df43fb7e-4c74-4f60-ad80-7f6e187ff063" Version="1.0.0.0" Publisher="CN=Stephen" />
   <Properties>
     <DisplayName>LiveConnect</DisplayName>
     <PublisherDisplayName>Stephen</PublisherDisplayName>
