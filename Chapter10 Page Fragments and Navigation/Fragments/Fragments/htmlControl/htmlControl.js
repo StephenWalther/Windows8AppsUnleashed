@@ -9,7 +9,8 @@
             var frmOrder = document.getElementById("frmOrder");
 
             // Get the order
-            frmOrder.addEventListener("submit", function () {
+            frmOrder.addEventListener("submit", function (e) {
+                e.preventDefault();
                 var order = {
                     billing_street: document.querySelector("#divBillingAddress .inpStreet").value,
                     billing_city: document.querySelector("#divBillingAddress .inpCity").value,

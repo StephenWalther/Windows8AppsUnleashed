@@ -52,6 +52,7 @@
     </AppxManifest>
     <Content Include="default.html" />
     <Content Include="htmlControl\address.html" />
+    <Content Include="htmlControl\htmlControl.css" />
     <Content Include="htmlControl\htmlControl.html" />
     <Content Include="htmlControl\htmlControl.js" />
     <Content Include="images\logo.png" />
