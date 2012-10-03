@@ -50,6 +50,7 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="images\tesla.jpg" />
     <Content Include="mediaMatch\mediaMatch.html" />
     <Content Include="mediaMatch\mediaMatch.js" />
     <Content Include="sessionState\sessionState.html" />
@@ -70,6 +71,8 @@
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
     <Content Include="mediaQueries\mediaQueries.html" />
+    <Content Include="viewportSnapped\viewportSnapped.html" />
+    <Content Include="viewport\viewport.html" />
     <None Include="AppEvents_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
