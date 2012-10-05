@@ -1,0 +1,13 @@
+﻿body {
+    margin:10px;
+}
+
+#txtResults {
+    margin: 15px;
+    width:600px;
+    height:100px;
+}
+
+#imgResults {
+    margin:15px;
+}
