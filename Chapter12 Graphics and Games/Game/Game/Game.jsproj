@@ -79,9 +79,10 @@
     <Content Include="pages\win\win.css" />
     <Content Include="pages\win\win.html" />
     <Content Include="pages\win\win.js" />
-    <Content Include="sounds\Eaten.wav" />
-    <Content Include="sounds\Ugh.wav" />
-    <Content Include="sounds\Yum.wav" />
+    <Content Include="sounds\cheer.wav" />
+    <Content Include="sounds\eaten.wav" />
+    <Content Include="sounds\ugh.wav" />
+    <Content Include="sounds\yum.wav" />
     <None Include="Game_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

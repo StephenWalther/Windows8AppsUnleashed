@@ -19,8 +19,8 @@
         // Constructor
         function () {
             // Setup Canvas
-            var canvas = document.getElementById("canvas");
-            this._ctx = canvas.getContext("2d");
+            this._canvas = document.getElementById("canvas");
+            this._ctx = this._canvas.getContext("2d");
         },
         // Instance Members
         {
@@ -39,7 +39,7 @@
                 this._animationLoopId = window.requestAnimationFrame(this.executeRenderLoop.bind(this));
                 
                 // Add move player listeners
-                document.addEventListener("MSPointerDown", this.movePlayerTouch.bind(this));
+                this._canvas.addEventListener("MSPointerDown", this.movePlayerTouch.bind(this));
                 document.addEventListener("keydown", this.movePlayerKeyboard.bind(this));
             },
 
@@ -53,6 +53,7 @@
 
             win: function() {
                 this.stop();
+                Unleashed.Sounds.cheer.play();
                 WinJS.Navigation.navigate("/pages/win/win.html");
             },
 

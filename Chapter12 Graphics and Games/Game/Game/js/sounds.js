@@ -8,7 +8,8 @@
         Sounds: {
             yum: new Audio("/sounds/yum.wav"),
             ugh: new Audio("/sounds/ugh.wav"),
-            eaten: new Audio("/sounds/eaten.wav")
+            eaten: new Audio("/sounds/eaten.wav"),
+            cheer: new Audio("/sounds/cheer.wav")
         }
     });
 
