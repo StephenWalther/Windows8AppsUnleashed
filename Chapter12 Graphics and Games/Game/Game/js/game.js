@@ -10,7 +10,7 @@
     var VERTICAL_TILES = 15;
     var TILE_HEIGHT = 50;
     var TILE_WIDTH = 50;
-    var MAX_HOLES_PER_ROW = 3;
+    var MAX_HOLES_PER_ROW = 5;
     var FOOD_COUNT = 5;
 
 
@@ -29,16 +29,17 @@
             _monsters: [],
 
 
-            start: function() {
+            /**************************************************
+            GLOBAL METHODS
+            ***************************************************/
+
+            start: function () {
                 this._updateLoopId = window.setInterval(this.executeUpdateLoop.bind(this), 250);
                 this._animationLoopId = window.requestAnimationFrame(this.executeRenderLoop.bind(this));
                 
                 // Add move player listener
                 document.addEventListener("keydown", this.movePlayer.bind(this));
             },
-
-
-
 
 
             stop: function () {
@@ -48,25 +49,134 @@
 
 
 
-            movePlayer: function(e) {
+            win: function() {
+                this.stop();
+                WinJS.Navigation.navigate("/pages/win/win.html");
+            },
+
+
+
+            lose: function() {
+                this.stop();
+                WinJS.Navigation.navigate("/pages/lose/lose.html");
+            },
+
+
+            movePlayer: function (e) {
                 switch (e.keyCode) {
                     case WinJS.Utilities.Key.upArrow:
                         this._player.direction = Unleashed.Direction.up;
-                        return;
+                        break;
                     case WinJS.Utilities.Key.downArrow:
                         this._player.direction = Unleashed.Direction.down;
-                        return;
+                        break;
                     case WinJS.Utilities.Key.leftArrow:
                         this._player.direction = Unleashed.Direction.left;
-                        return;
+                        break;
                     case WinJS.Utilities.Key.rightArrow:
                         this._player.direction = Unleashed.Direction.right;
-                        return;
+                        break;
+                    case WinJS.Utilities.Key.space:
+                        this._player.direction = Unleashed.Direction.none;
+                        break;
                 }
 
             },
 
 
+            /******************************************
+            UTILITY METHODS
+            *******************************************/
+
+            getRandomNumber: function (lowerBound, upperBound) {
+                return Math.floor(Math.random() * upperBound) + lowerBound;
+            },
+
+
+            coinFlip: function () {
+                return this.getRandomNumber(0, 2) === 0;
+            },
+
+
+
+
+
+            /**************************************************
+            GENERATE GAME
+            ***************************************************/
+
+
+            generateBoard: function () {
+                this.generateWalls();
+                this.generateHoles();
+                this.generatePlayer();
+                this.generateMonsters();
+                this.generateFood();
+            },
+
+
+            generateFood: function () {
+                this._food = [];
+                for (var i = 0; i < FOOD_COUNT; i++) {
+                    do {
+                        var x = this.getRandomNumber(3, HORIZONTAL_TILES - 3);
+                        var y = this.getRandomNumber(3, VERTICAL_TILES - 3);
+                    } while (this.getTile(x, y) === Unleashed.Tiles.wall);
+                    this._food.push(new Unleashed.Food(Unleashed.Tiles.hamburger, x, y));
+                }
+            },
+
+
+            generateWalls: function () {
+                // Generate walls everywhere
+                for (var y = 0; y < VERTICAL_TILES; y++) {
+                    for (var x = 0; x < HORIZONTAL_TILES; x++) {
+                        this.updateTile(x, y, Unleashed.Tiles.wall);
+                    }
+                }
+            },
+
+            generateHoles: function () {
+                // Clear out every two rows
+                for (var y = 1; y < VERTICAL_TILES - 1; y += 2) {
+                    for (var x = 1; x < HORIZONTAL_TILES - 1; x++) {
+                        this.updateTile(x, y, Unleashed.Tiles.background);
+                    }
+                }
+
+
+                // Generate random holes every other row
+                for (var y = 2; y < VERTICAL_TILES - 1; y += 2) {
+                    for (var i = 0; i < MAX_HOLES_PER_ROW; i++) {
+                        var x = this.getRandomNumber(1, HORIZONTAL_TILES - 2);
+                        this.updateTile(x, y, Unleashed.Tiles.background);
+                    }
+                }
+            },
+
+
+
+            generatePlayer: function () {
+                // Player starts at 1,1 tile
+                this._player = new Unleashed.Character(Unleashed.Tiles.player, Unleashed.Direction.none, 1, 1);
+            },
+
+            generateMonsters: function () {
+                // Clear out monsters
+                this._monsters = [];
+
+                // Add monsters to three corners
+                this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), HORIZONTAL_TILES - 2, 1));
+                this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), HORIZONTAL_TILES - 2, VERTICAL_TILES - 2));
+                this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), 1, VERTICAL_TILES - 2));
+            },
+
+
+
+
+            /**************************************************
+            UPDATE LOOP
+            ***************************************************/
 
             executeUpdateLoop: function () {
                 this.updateMonsterPositions();
@@ -77,11 +187,19 @@
             updateMonsterPositions: function() {
                 for (var i = 0; i < this._monsters.length; i++) {
                     var monster = this._monsters[i];
-                    var result = this.moveCharacter(monster);
-                    if (result === false || this.getRandomNumber(0, 2) === 0) {
-                        monster.direction = this.getRandomDirection();
+
+                    // Move toward the player
+                    monster.direction = this.getPlayerDirection(monster);
+
+                    // Move the monster
+                    var canMove = this.moveCharacter(monster);
+                    if (!canMove) {
+                        monster.direction = this.getPlayerDirection(monster);
                         this.moveCharacter(monster);
                     }
+
+                    // Collide with player?
+                    this.collideWithPlayer(monster);
                 }
             },
 
@@ -119,93 +237,71 @@
             },
 
 
-            collideWithWall: function(x,y) {
+
+            updatePlayerPosition: function() {
+                this.moveCharacter(this._player);
+
+                // collide with food?
+                this.collideWithFood();
+            },
+
+
+
+            collideWithWall: function (x, y) {
                 return (this.getTile(x, y) === Unleashed.Tiles.wall);
             },
 
 
-            updatePlayerPosition: function() {
-                this.moveCharacter(this._player);
+
+            collideWithFood: function () {
+                for (var i = 0; i < this._food.length; i++) {
+                    var food = this._food[i];
+                    if (this._player.x === food.x && this._player.y === food.y) {
+                        this._food.splice(i, 1);
+                    }
+                }
+
+                // If no more food then player wins!
+                if (this._food.length === 0) {
+                    this.win();
+                }
             },
+            
 
-
-            generateBoard: function () {
-                this.generateWalls();
-                this.generateHoles();
-                this.generatePlayer();
-                this.generateMonsters();
-                this.generateFood();
-            },
-
-
-
-
-            generatePlayer: function () {
-                // Player starts at 1,1 tile
-                this._player = new Unleashed.Character(Unleashed.Tiles.player, Unleashed.Direction.none, 1, 1);
-            },
-
-            generateMonsters: function() {
-                // Add monsters to three corners
-                this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), HORIZONTAL_TILES - 2, 1));
-                this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), HORIZONTAL_TILES - 2, VERTICAL_TILES - 2));
-                this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), 1, VERTICAL_TILES - 2));
+            collideWithPlayer: function (monster) {
+                if (monster.x == this._player.x && monster.y === this._player.y) {
+                    this.lose();
+                }
             },
 
 
             getRandomDirection: function() {
-                switch (this.getRandomNumber(0,5)) {
-                    case 0: return Unleashed.Direction.none;
-                    case 1: return Unleashed.Direction.up;
-                    case 2: return Unleashed.Direction.down;
-                    case 3: return Unleashed.Direction.left;
-                    case 4: return Unleashed.Direction.right;
+                switch (this.getRandomNumber(0, 4)) {
+                    case 0: return Unleashed.Direction.up;
+                    case 1: return Unleashed.Direction.down;
+                    case 2: return Unleashed.Direction.left;
+                    case 3: return Unleashed.Direction.right;
                 }
             },
 
 
-            generateFood: function() {
-                for (var i = 0; i < FOOD_COUNT; i++) {
-                    do {
-                        var x = this.getRandomNumber(3,HORIZONTAL_TILES-3);
-                        var y = this.getRandomNumber(3,VERTICAL_TILES-3);
-                    } while (this.getTile(x,y) === Unleashed.Tiles.wall);
-                    this._food.push(new Unleashed.Food(Unleashed.Tiles.hamburger, x, y));
+            getPlayerDirection: function (monster) {
+                if (this.coinFlip()) {
+                    if (this._player.x > monster.x) {
+                        return Unleashed.Direction.right;
+                    } else {
+                        return Unleashed.Direction.left;
+                    };
+                } else {
+                    if (this._player.y > monster.y) {
+                        return Unleashed.Direction.down;
+                    } else {
+                        return Unleashed.Direction.up;
+                    };
                 }
             },
 
 
-            generateWalls: function() {
-                // Generate walls everywhere
-                for (var y = 0; y < VERTICAL_TILES; y ++) {
-                    for (var x = 0; x < HORIZONTAL_TILES; x++) {
-                        this.updateTile(x, y, Unleashed.Tiles.wall);
-                    }
-                }
-            },
-
-            generateHoles: function () {
-                // Clear out every two rows
-                for (var y = 1; y < VERTICAL_TILES -1; y+=2) {
-                    for (var x = 1; x < HORIZONTAL_TILES-1; x++) {
-                        this.updateTile(x, y, Unleashed.Tiles.background);
-                    }
-                }
-
-
-                // Generate random holes every other row
-                for (var y = 2; y < VERTICAL_TILES-1; y += 2) {
-                    for (var i = 0; i < MAX_HOLES_PER_ROW; i++) {
-                        var x = this.getRandomNumber(1, HORIZONTAL_TILES-2);
-                        this.updateTile(x, y, Unleashed.Tiles.background);
-                    }
-                }
-            },
-    
-
-            getRandomNumber:function(lowerBound, upperBound) {
-                return Math.floor(Math.random() * upperBound) + lowerBound;
-            },
 
             updateTile:function(x, y, tile) {
                 this._board[(y * HORIZONTAL_TILES) + x] = tile;
@@ -215,6 +311,11 @@
             getTile:function(x, y) {
                 return this._board[(y * HORIZONTAL_TILES) + x];
             },
+
+
+            /**********************************
+            RENDER LOOP
+            **********************************/
 
 
             executeRenderLoop: function () {

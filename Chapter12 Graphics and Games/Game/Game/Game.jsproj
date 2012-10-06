@@ -64,7 +64,20 @@
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
     <Content Include="js\game.js" />
+    <Content Include="js\navigator.js" />
     <Content Include="js\tiles.js" />
+    <Content Include="pages\lose\lose.css" />
+    <Content Include="pages\lose\lose.html" />
+    <Content Include="pages\lose\lose.js" />
+    <Content Include="pages\play\play.css" />
+    <Content Include="pages\play\play.html" />
+    <Content Include="pages\play\play.js" />
+    <Content Include="pages\home\home.css" />
+    <Content Include="pages\home\home.html" />
+    <Content Include="pages\home\home.js" />
+    <Content Include="pages\win\win.css" />
+    <Content Include="pages\win\win.html" />
+    <Content Include="pages\win\win.js" />
     <None Include="Game_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
