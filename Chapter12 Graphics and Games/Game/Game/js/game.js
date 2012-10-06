@@ -1,6 +1,7 @@
 ﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 /// <reference path="//Microsoft.WinJS.1.0/js/ui.js" />
 /// <reference path="tiles.js" />
+/// <reference path="sounds.js" />
 /// <reference path="direction.js" />
 
 (function () {
@@ -12,7 +13,7 @@
     var TILE_WIDTH = 50;
     var MAX_HOLES_PER_ROW = 5;
     var FOOD_COUNT = 5;
-
+    var UPDATE_LOOP_RATE = 200;
 
     var Game = WinJS.Class.define(
         // Constructor
@@ -34,11 +35,12 @@
             ***************************************************/
 
             start: function () {
-                this._updateLoopId = window.setInterval(this.executeUpdateLoop.bind(this), 250);
+                this._updateLoopId = window.setInterval(this.executeUpdateLoop.bind(this), UPDATE_LOOP_RATE);
                 this._animationLoopId = window.requestAnimationFrame(this.executeRenderLoop.bind(this));
                 
-                // Add move player listener
-                document.addEventListener("keydown", this.movePlayer.bind(this));
+                // Add move player listeners
+                document.addEventListener("MSPointerDown", this.movePlayerTouch.bind(this));
+                document.addEventListener("keydown", this.movePlayerKeyboard.bind(this));
             },
 
 
@@ -58,11 +60,35 @@
 
             lose: function() {
                 this.stop();
+                Unleashed.Sounds.eaten.play();
                 WinJS.Navigation.navigate("/pages/lose/lose.html");
             },
 
 
-            movePlayer: function (e) {
+            movePlayerTouch: function(e) {
+                var playerX = this._player.x * TILE_WIDTH;
+                var playerY = this._player.y * TILE_HEIGHT;
+                var absX = Math.abs(e.offsetX - playerX);
+                var absY = Math.abs(e.offsetY - playerY);
+
+
+
+                if (absX > absY) {
+                    if (e.offsetX > playerX) {
+                        this._player.direction = Unleashed.Direction.right;
+                    } else {
+                        this._player.direction = Unleashed.Direction.left;
+                    }
+                } else {
+                    if (e.offsetY > playerY) {
+                        this._player.direction = Unleashed.Direction.down;
+                    } else {
+                        this._player.direction = Unleashed.Direction.up;
+                    }
+                }
+            },
+
+            movePlayerKeyboard: function (e) {
                 switch (e.keyCode) {
                     case WinJS.Utilities.Key.upArrow:
                         this._player.direction = Unleashed.Direction.up;
@@ -188,12 +214,16 @@
                 for (var i = 0; i < this._monsters.length; i++) {
                     var monster = this._monsters[i];
 
+                    // Did player walk into monster?
+                    this.collideWithPlayer(monster);
+
                     // Move toward the player
                     monster.direction = this.getPlayerDirection(monster);
 
                     // Move the monster
                     var canMove = this.moveCharacter(monster);
                     if (!canMove) {
+                        //Unleashed.Sounds.ugh.play();
                         monster.direction = this.getPlayerDirection(monster);
                         this.moveCharacter(monster);
                     }
@@ -239,7 +269,10 @@
 
 
             updatePlayerPosition: function() {
-                this.moveCharacter(this._player);
+                var canMove = this.moveCharacter(this._player);
+                if (!canMove) {
+                    //Unleashed.Sounds.bounce.play();
+                }
 
                 // collide with food?
                 this.collideWithFood();
@@ -257,6 +290,7 @@
                 for (var i = 0; i < this._food.length; i++) {
                     var food = this._food[i];
                     if (this._player.x === food.x && this._player.y === food.y) {
+                        Unleashed.Sounds.yum.play();
                         this._food.splice(i, 1);
                     }
                 }

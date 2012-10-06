@@ -65,6 +65,7 @@
     <Content Include="css\default.css" />
     <Content Include="js\game.js" />
     <Content Include="js\navigator.js" />
+    <Content Include="js\sounds.js" />
     <Content Include="js\tiles.js" />
     <Content Include="pages\lose\lose.css" />
     <Content Include="pages\lose\lose.html" />
@@ -78,6 +79,9 @@
     <Content Include="pages\win\win.css" />
     <Content Include="pages\win\win.html" />
     <Content Include="pages\win\win.js" />
+    <Content Include="sounds\Eaten.wav" />
+    <Content Include="sounds\Ugh.wav" />
+    <Content Include="sounds\Yum.wav" />
     <None Include="Game_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
