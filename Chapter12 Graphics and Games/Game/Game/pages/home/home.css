@@ -1,3 +1,5 @@
-﻿.home p {
-    margin-left: 120px;
+﻿#gameIntro {
+    margin:auto;
+    width:400px;
+    font-size:larger;
 }
