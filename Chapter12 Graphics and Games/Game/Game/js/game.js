@@ -20,7 +20,7 @@
         function () {
             // Setup Canvas
             this._canvas = document.getElementById("canvas");
-            this._ctx = this._canvas.getContext("2d");
+            this._ctx = this._canvas.getContext("2d"); 
         },
         // Instance Members
         {
@@ -71,8 +71,6 @@
                 var playerY = this._player.y * TILE_HEIGHT;
                 var absX = Math.abs(e.offsetX - playerX);
                 var absY = Math.abs(e.offsetY - playerY);
-
-
 
                 if (absX > absY) {
                     if (e.offsetX > playerX) {
@@ -368,7 +366,6 @@
 
 
             renderBoard: function () {
-                // Render background tiles
                 for (var y = 0; y < VERTICAL_TILES; y++) {
                     for (var x = 0; x < HORIZONTAL_TILES; x++) {
                         var tile = this.getTile(x, y);
@@ -397,7 +394,7 @@
             },
 
             renderPlayer: function () {
-               this.drawImage(this._player.tile.image, this._player.x, this._player.y);
+                this.drawImage(this._player.tile.image, this._player.x, this._player.y);
             },
 
             drawImage: function (image, x, y) {

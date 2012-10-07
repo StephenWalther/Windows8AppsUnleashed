@@ -54,10 +54,15 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="default.html" />
+    <Content Include="images\background.jpg" />
+    <Content Include="images\brick.jpg" />
+    <Content Include="images\hamburger.gif" />
+    <Content Include="images\hero.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="images\zombie.jpg" />
     <Content Include="js\direction.js" />
     <Content Include="js\food.js" />
     <Content Include="js\character.js" />
@@ -81,7 +86,6 @@
     <Content Include="pages\win\win.js" />
     <Content Include="sounds\cheer.wav" />
     <Content Include="sounds\eaten.wav" />
-    <Content Include="sounds\ugh.wav" />
     <Content Include="sounds\yum.wav" />
     <None Include="Game_TemporaryKey.pfx" />
   </ItemGroup>
