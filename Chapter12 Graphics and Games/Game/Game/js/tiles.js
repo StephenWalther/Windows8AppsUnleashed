@@ -12,10 +12,10 @@
 
     var tiles = {};
     tiles.background = new Tile("/images/background.jpg");
-    tiles.wall = new Tile("/images/brick.jpg");
-    tiles.player = new Tile("/images/hero.png");
-    tiles.zombie = new Tile("/images/zombie.jpg");
-    tiles.hamburger = new Tile("/images/hamburger.gif");
+    tiles.wall = new Tile("/images/brick.png");
+    tiles.player = new Tile("/images/hero.gif");
+    tiles.zombie = new Tile("/images/zombie.gif");
+    tiles.hamburger = new Tile("/images/hamburger.png");
 
     WinJS.Namespace.define("Unleashed", {
         Tiles: tiles
