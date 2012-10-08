@@ -1,48 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity
-    Name="656612a9-a9fc-49aa-98ef-d83307152b78"
-    Version="1.0.0.0"
-    Publisher="CN=Stephen" />
-
+  <Identity Name="656612a9-a9fc-49aa-98ef-d83307152b78" Version="1.0.0.0" Publisher="CN=Stephen" />
   <Properties>
     <DisplayName>Game</DisplayName>
     <PublisherDisplayName>Stephen</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application 
-      Id="App"
-      StartPage="default.html">
-
-      <VisualElements
-        DisplayName="Game"
-        Logo="images\logo.png"
-        SmallLogo="images\smalllogo.png"
-        Description="Game"
-        ForegroundText="light"
-        BackgroundColor="#464646">
-
+    <Application Id="App" StartPage="default.html">
+      <VisualElements DisplayName="Brain Eaters" Logo="images\BrainEatersLogo.png" SmallLogo="images\BrainEatersLogoSmall.png" Description="Escape the zombies while eating all of the food pellets. This is a sample app from the book Windows 8 Metro Apps with HTML5 and JavaScript Unleashed" ForegroundText="light" BackgroundColor="#000000">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="images\splashscreen.png" />
-
+        <SplashScreen Image="images\splash.png" />
       </VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>
-
 </Package>

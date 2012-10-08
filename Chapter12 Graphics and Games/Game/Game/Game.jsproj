@@ -55,14 +55,13 @@
     </AppxManifest>
     <Content Include="default.html" />
     <Content Include="images\background.jpg" />
+    <Content Include="images\BrainEatersLogo.png" />
+    <Content Include="images\BrainEatersLogoSmall.png" />
     <Content Include="images\brick.png" />
     <Content Include="images\hamburger.png" />
     <Content Include="images\hero.gif" />
     <Content Include="images\logo.png" />
-    <Content Include="images\smalllogo.png" />
-    <Content Include="images\splash.jpg" />
-    <Content Include="images\splashscreen.png" />
-    <Content Include="images\storelogo.png" />
+    <Content Include="images\splash.png" />
     <Content Include="images\zombie.gif" />
     <Content Include="js\direction.js" />
     <Content Include="js\food.js" />
