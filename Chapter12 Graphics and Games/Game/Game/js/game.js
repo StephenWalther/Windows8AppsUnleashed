@@ -13,7 +13,7 @@
     var TILE_WIDTH = 50;
     var MAX_HOLES_PER_ROW = 5;
     var FOOD_COUNT = 5;
-    var UPDATE_LOOP_RATE = 200;
+    var UPDATE_LOOP_RATE = 250;
 
     var Game = WinJS.Class.define(
         // Constructor
@@ -191,7 +191,7 @@
                 this._monsters = [];
 
                 // Add monsters to three corners
-                this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), HORIZONTAL_TILES - 2, 1));
+                //this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), HORIZONTAL_TILES - 2, 1));
                 this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), HORIZONTAL_TILES - 2, VERTICAL_TILES - 2));
                 this._monsters.push(new Unleashed.Character(Unleashed.Tiles.zombie, this.getRandomDirection(), 1, VERTICAL_TILES - 2));
             },
