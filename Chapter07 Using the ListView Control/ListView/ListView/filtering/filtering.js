@@ -21,21 +21,16 @@
             lvProducts.itemDataSource = listProducts.dataSource;
 
             inputFilter.addEventListener("keyup", function () {
-                filterProducts(lvProducts, inputFilter.value);
+                // Filter the data source
+                var filteredListProducts = listProducts.createFiltered(function (item) {
+                    return item.name.toLowerCase().indexOf(inputFilter.value) == 0;
+                });
+
+                // Bind the list of products to the ListView
+                lvProducts.itemDataSource = filteredListProducts.dataSource;
             });
         
         });
-    }
-
-    function filterProducts(listViewToFilter, filter) {
-        // Filter the data source
-        var filteredListProducts = listProducts.createFiltered(function (item) {
-            var result = item.name.toLowerCase().indexOf(filter);
-            return item.name.toLowerCase().indexOf(filter) == 0;
-        });
-
-        // Bind the list of products to the ListView
-        listViewToFilter.itemDataSource = filteredListProducts.dataSource;
     }
 
     document.addEventListener("DOMContentLoaded", initialize);
