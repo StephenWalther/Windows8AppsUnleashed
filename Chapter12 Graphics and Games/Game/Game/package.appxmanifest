@@ -3,8 +3,8 @@
   <Identity Name="656612a9-a9fc-49aa-98ef-d83307152b78" Version="1.0.0.0" Publisher="CN=Stephen" />
   <Properties>
     <DisplayName>Game</DisplayName>
-    <PublisherDisplayName>Stephen</PublisherDisplayName>
-    <Logo>images\storelogo.png</Logo>
+    <PublisherDisplayName>Superexpert</PublisherDisplayName>
+    <Logo>images\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
@@ -19,6 +19,15 @@
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="images\splash.png" />
       </VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileOpenPicker" StartPage="appSettings\privacySettings.html">
+          <FileOpenPicker>
+            <SupportedFileTypes>
+              <SupportsAnyFileType />
+            </SupportedFileTypes>
+          </FileOpenPicker>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

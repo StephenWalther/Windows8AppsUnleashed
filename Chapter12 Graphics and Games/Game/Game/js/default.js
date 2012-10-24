@@ -41,5 +41,14 @@
         app.sessionState.history = nav.history;
     };
 
+    app.onsettings = function (e) {
+        e.detail.applicationcommands = {
+            "divPrivacy": { href: "appSettings/privacySettings.html", title: "Privacy Policy" }
+        };
+        WinJS.UI.SettingsFlyout.populateSettings(e);
+    }
+
+
+
     app.start();
 })();
