@@ -4,7 +4,7 @@
     // Create a List of products
     var listProducts = new WinJS.Binding.List([
         { name: "Bread", price: 2.20 },
-        { name: "Brocolli", price: 1.19 },
+        { name: "Broccoli", price: 1.19 },
         { name: "Bananas", price: 2.33 },
         { name: "Apples", price: 5.20 },
         { name: "Apple Sauce", price: 12.99 }
