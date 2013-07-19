@@ -6,10 +6,10 @@
         // Create a view model
         var viewModel = {
             timesClicked: 0,
-            click: function (evt) {
+            click: WinJS.Utilities.markSupportedForProcessing(function (evt) {
                 evt.preventDefault();
                 viewModel.timesClicked ++;
-            }
+            })
         };
 
         // Make the view model observable

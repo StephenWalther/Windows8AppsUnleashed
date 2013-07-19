@@ -4,7 +4,7 @@
     function initialize() {
  
         var viewModel = {
-            submit: function (evt) {
+            submit: WinJS.Utilities.markSupportedForProcessing(function (evt) {
                 // Prevent page from being posted
                 evt.preventDefault();
 
@@ -15,7 +15,8 @@
                 };
 
                 // TODO: Add new product to database
-            }
+                console.log("Adding " + productToAdd.name + " to the database.");
+            })
         };
 
 
